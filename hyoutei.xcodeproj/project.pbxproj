@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43E6DABA15FF9519C9845EB1 /* Pods_hyoutei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE4E63FA3518AB7EFDE3003 /* Pods_hyoutei.framework */; };
 		CE87985121327E1A004AA3A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87985021327E1A004AA3A9 /* AppDelegate.swift */; };
 		CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87985221327E1A004AA3A9 /* ViewController.swift */; };
 		CE87985621327E1A004AA3A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87985421327E1A004AA3A9 /* Main.storyboard */; };
 		CE87985821327E1F004AA3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE87985721327E1F004AA3A9 /* Assets.xcassets */; };
 		CE87985B21327E1F004AA3A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87985921327E1F004AA3A9 /* LaunchScreen.storyboard */; };
+		CE87986321327EA8004AA3A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */; };
+		CEDF4C242136C69300487EC1 /* createViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C232136C69300487EC1 /* createViewController.swift */; };
+		CEDF4C262136CE8400487EC1 /* subjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C252136CE8400487EC1 /* subjectTableViewController.swift */; };
+		CEDF4C2A2136D9F300487EC1 /* teachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C292136D9F300487EC1 /* teachersViewController.swift */; };
+		CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EE4E63FA3518AB7EFDE3003 /* Pods_hyoutei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hyoutei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDE566A3D682A1ABE6471AB /* Pods-hyoutei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hyoutei.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hyoutei/Pods-hyoutei.debug.xcconfig"; sourceTree = "<group>"; };
+		A61D71DACC810530AB88E3F9 /* Pods-hyoutei.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hyoutei.release.xcconfig"; path = "Pods/Target Support Files/Pods-hyoutei/Pods-hyoutei.release.xcconfig"; sourceTree = "<group>"; };
 		CE87984D21327E1A004AA3A9 /* hyoutei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hyoutei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87985021327E1A004AA3A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE87985221327E1A004AA3A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +31,11 @@
 		CE87985721327E1F004AA3A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE87985A21327E1F004AA3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE87985C21327E1F004AA3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEDF4C232136C69300487EC1 /* createViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createViewController.swift; sourceTree = "<group>"; };
+		CEDF4C252136CE8400487EC1 /* subjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subjectTableViewController.swift; sourceTree = "<group>"; };
+		CEDF4C292136D9F300487EC1 /* teachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teachersViewController.swift; sourceTree = "<group>"; };
+		CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E6DABA15FF9519C9845EB1 /* Pods_hyoutei.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		295FED810A1A188C22C54EF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FDE566A3D682A1ABE6471AB /* Pods-hyoutei.debug.xcconfig */,
+				A61D71DACC810530AB88E3F9 /* Pods-hyoutei.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		88C6879C16CB8A852F6762A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EE4E63FA3518AB7EFDE3003 /* Pods_hyoutei.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE87984421327E1A004AA3A9 = {
 			isa = PBXGroup;
 			children = (
 				CE87984F21327E1A004AA3A9 /* hyoutei */,
 				CE87984E21327E1A004AA3A9 /* Products */,
+				295FED810A1A188C22C54EF2 /* Pods */,
+				88C6879C16CB8A852F6762A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +91,14 @@
 				CE87985021327E1A004AA3A9 /* AppDelegate.swift */,
 				CE87985221327E1A004AA3A9 /* ViewController.swift */,
 				CE87985421327E1A004AA3A9 /* Main.storyboard */,
+				CEDF4C292136D9F300487EC1 /* teachersViewController.swift */,
+				CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */,
+				CEDF4C252136CE8400487EC1 /* subjectTableViewController.swift */,
+				CEDF4C232136C69300487EC1 /* createViewController.swift */,
 				CE87985721327E1F004AA3A9 /* Assets.xcassets */,
 				CE87985921327E1F004AA3A9 /* LaunchScreen.storyboard */,
 				CE87985C21327E1F004AA3A9 /* Info.plist */,
+				CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */,
 			);
 			path = hyoutei;
 			sourceTree = "<group>";
@@ -71,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE87985F21327E1F004AA3A9 /* Build configuration list for PBXNativeTarget "hyoutei" */;
 			buildPhases = (
+				0E3947C9B7C8F3D970CFB563 /* [CP] Check Pods Manifest.lock */,
 				CE87984921327E1A004AA3A9 /* Sources */,
 				CE87984A21327E1A004AA3A9 /* Frameworks */,
 				CE87984B21327E1A004AA3A9 /* Resources */,
+				0DEE6BD2DDC8DBC1E20A07D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,17 +166,67 @@
 				CE87985B21327E1F004AA3A9 /* LaunchScreen.storyboard in Resources */,
 				CE87985821327E1F004AA3A9 /* Assets.xcassets in Resources */,
 				CE87985621327E1A004AA3A9 /* Main.storyboard in Resources */,
+				CE87986321327EA8004AA3A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DEE6BD2DDC8DBC1E20A07D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hyoutei/Pods-hyoutei-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hyoutei/Pods-hyoutei-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0E3947C9B7C8F3D970CFB563 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hyoutei-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE87984921327E1A004AA3A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDF4C262136CE8400487EC1 /* subjectTableViewController.swift in Sources */,
 				CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */,
+				CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */,
+				CEDF4C242136C69300487EC1 /* createViewController.swift in Sources */,
+				CEDF4C2A2136D9F300487EC1 /* teachersViewController.swift in Sources */,
 				CE87985121327E1A004AA3A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +369,7 @@
 		};
 		CE87986021327E1F004AA3A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FDE566A3D682A1ABE6471AB /* Pods-hyoutei.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +388,7 @@
 		};
 		CE87986121327E1F004AA3A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A61D71DACC810530AB88E3F9 /* Pods-hyoutei.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
