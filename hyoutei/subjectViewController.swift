@@ -1,43 +1,45 @@
 //
-//  teachersViewController.swift
+//  subjectViewController.swift
 //  hyoutei
 //
-//  Created by user on 2018/08/29.
+//  Created by user on 2018/09/01.
 //  Copyright © 2018年 hamasugartanaka. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class teachersViewController: UIViewController,UIScrollViewDelegate {
+class subjectViewController: UIViewController,UIScrollViewDelegate {
     
     
-    var teachers = [String]()
+    var subjects = [String]()
     
-    var subject:String!
     var school:String!
-    var teacher:String! //次の画面に表示するための教授を定義する
+    
+    var subject:String! //次の画面に表示するための学校を定義する
     
     let scrollView = UIScrollView()
     
     var numberOfDictionary:Int!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         makeScrollView()
         
-        let ref = Database.database().reference().child("/\(school!)/\(subject!)")
+        let ref = Database.database().reference().child("\(school!)")
         
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             
             var dictionary:NSDictionary!
             dictionary = snapshot.value as! NSDictionary
             
+            
+            
             for (key, _) in dictionary {
                 
-                self.teachers.append(key as! String)
+                self.subjects.append(key as! String)
                 
             }
             
@@ -45,12 +47,17 @@ class teachersViewController: UIViewController,UIScrollViewDelegate {
             
             
             self.makeButton()
-        
+            
+            
+            
         })
         
+        
+        
+
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,9 +67,10 @@ class teachersViewController: UIViewController,UIScrollViewDelegate {
     func makeButton(){
         
         var i=0
-        while i<self.teachers.count{
+        while i<self.subjects.count{
+            
             let button = UIButton()
-            let title = self.teachers[i]
+            let title = self.subjects[i]
             print (title)
             button.setTitle(title, for: .normal)
             button.frame = CGRect(x: 10, y: 100*(i), width: Int(self.view.frame.size.width-20), height: 90)
@@ -84,8 +92,6 @@ class teachersViewController: UIViewController,UIScrollViewDelegate {
         
         
         
-        
-        
     }
     
     
@@ -93,9 +99,9 @@ class teachersViewController: UIViewController,UIScrollViewDelegate {
         
         //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
         let numberOfButton = Int(sender.frame.minY)/100
-        teacher = teachers[numberOfButton]
+        subject = subjects[numberOfButton]
         print (subject)
-        performSegue(withIdentifier: "goComment", sender: nil)
+         performSegue(withIdentifier: "goTeacher", sender: nil)
     }
     
     func makeScrollView(){
@@ -114,31 +120,31 @@ class teachersViewController: UIViewController,UIScrollViewDelegate {
         self.view.addSubview(scrollView)
     }
     
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    
-            let nextVC:CommentViewController = segue.destination as! CommentViewController
-    
-            nextVC.school = school!
-            nextVC.subject = subject!
-            nextVC.teacher = teacher!
-    
-        }
-    
-    @objc func goback(){
-       
-            self.dismiss(animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+
+        let nextVC:teachersViewController = segue.destination as! teachersViewController
+
+        nextVC.school = school!
+        nextVC.subject = subject!
+
     }
     
+    @objc func goback(){
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
+
+
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
