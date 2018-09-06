@@ -65,7 +65,7 @@ class editViewController: UIViewController {
     
     @objc func goBack(){
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     
     
