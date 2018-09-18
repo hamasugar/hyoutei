@@ -10,6 +10,17 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
+    
+    var width:Int{return Int(self.view.frame.size.width)}
+    var height:Int{return Int(self.view.frame.size.height)}
+    
+    let textField = UITextField()
+    let passwordField = UITextField()
+    let idLabel = UILabel()
+    let passwordLabel = UILabel()
+    let createButton = UIButton()
+    let loginButton = UIButton()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,21 +30,57 @@ class LoginViewController: UIViewController {
             
             self.textField.text = id as! String
         }
+        
+        self.textField.frame = CGRect(x: self.width*4/10, y: self.height/2-100, width: self.width*5/10, height: 30)
+        self.passwordField.frame = CGRect(x: self.width*4/10, y: self.height/2, width: self.width*5/10, height: 30)
+        self.passwordField.isSecureTextEntry = true
+        self.textField.borderStyle = UITextBorderStyle.roundedRect
+        self.passwordField.borderStyle = UITextBorderStyle.roundedRect
+        self.textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        self.passwordField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        self.view.addSubview(textField)
+        self.view.addSubview(passwordField)
+        
+        self.idLabel.frame = CGRect(x: self.width/10, y: self.height/2-100, width: self.width*3/10, height: 50)
+        self.passwordLabel.frame = CGRect(x: self.width/10, y: self.height/2, width: self.width*3/10, height: 50)
+        
+        
+        self.idLabel.text = "ID"
+        self.passwordLabel.text = "パスワード"
+        self.idLabel.textColor = UIColor.black
+        self.passwordLabel.textColor = UIColor.black
+        self.view.addSubview(idLabel)
+        self.view.addSubview(passwordLabel)
+        
+        
+        
+        self.createButton.frame = CGRect(x: self.width/10, y: self.height/2+100, width: self.width*3/10, height: self.width*3/10)
+        self.loginButton.frame = CGRect(x: self.width*6/10, y: self.height/2+100, width: self.width*3/10, height: self.width*3/10)
+        self.createButton.setTitle("会員登録", for: .normal)
+        self.loginButton.setTitle("ログイン", for: .normal)
+        self.createButton.setTitleColor(UIColor.black, for: .normal)
+        self.loginButton.setTitleColor(UIColor.black, for: .normal)
+        self.createButton.addTarget(self, action: #selector(create), for: .touchUpInside)
+        self.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
+        self.createButton.backgroundColor = MakeView.underButtonColor
+        self.loginButton.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(loginButton)
+        self.view.addSubview(createButton)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    
     
     // 会員登録のボタンであります
-    @IBAction func button1(_ sender: Any) {
-        
-        
+    
+    @objc func create(){
+        MakeView.puyopuyo(sender:createButton)
         if !self.countjudge(){
-            return
+            return //文字数制限を満たしていなかったらその時点で処理を終える
         }
         //keyにすると親そのものがString型で帰ってくる descriptionでもURLが帰ってくるだけ
         let privateref = Database.database().reference().child("login/\(self.textField.text!)")
@@ -41,13 +88,9 @@ class LoginViewController: UIViewController {
         privateref.observeSingleEvent(of: .value, with: {(snapshot) in
             
             if let password = snapshot.value as? String{
-                print (snapshot.value as! String)
-                print ("sonzaisuru")
                 self.makeAlert(message: "このIDはすでに使われています")
             }
             else{
-
-                print ("sonzaisinai")
                 
                 let loginref = Database.database().reference().child("login")
                 
@@ -64,22 +107,19 @@ class LoginViewController: UIViewController {
                 
                 self.performSegue(withIdentifier: "goSchool", sender: nil)
                 self.makeGoodAlert(message: "会員登録が完了しました")
-
+                
                 
                 
             }
             
             
         })
-        
-
     }
     
-    
-    @IBAction func loginButton(_ sender: Any) {
-        
+    @objc func login(){
+        MakeView.puyopuyo(sender:loginButton)
         if !self.countjudge(){
-            return
+            return //文字数制限を満たしていなかったらその時点で処理を終える
         }
         
         
@@ -94,19 +134,19 @@ class LoginViewController: UIViewController {
                 var digest = [UInt8](repeating: 0, count: length)
                 _ = data.withUnsafeBytes { CC_MD5($0, CC_LONG(data.count), &digest) }
                 let crypt = digest.map { String(format: "%02x", $0) }.joined(separator: "")
-                    
+                
                 
                 if crypt == password{
-                     UserDefaults.standard.set(self.textField.text!, forKey: "ID")
+                    UserDefaults.standard.set(self.textField.text!, forKey: "ID")
                     self.performSegue(withIdentifier: "goSchool", sender: nil)
                     
                 }
                 else{
                     self.makeAlert(message: "パスワードが違います")
                 }
-                    
-                    
-                }
+                
+                
+            }
             else{
                 
                 self.makeAlert(message: "ユーザーが存在しません")
@@ -115,8 +155,7 @@ class LoginViewController: UIViewController {
             
         })
         
-        }
-    
+    }
     
 
     func makeAlert(message: String) {
@@ -135,7 +174,7 @@ class LoginViewController: UIViewController {
     func countjudge() -> Bool{
         
         let idText = self.textField.text
-        let emailRegEx = "[A-Z0-9a-z]{5,20}"
+        let emailRegEx = "[A-Z0-9a-z]{5,20}" //英数字５文字以上2０文字以内の制限
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         let result1 = emailTest.evaluate(with: idText)
         
@@ -156,6 +195,7 @@ class LoginViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textField.endEditing(true)
+        self.passwordField.endEditing(true)
     }
 
 }

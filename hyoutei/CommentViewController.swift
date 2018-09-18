@@ -30,7 +30,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         scrollView.backgroundColor = MakeView.backgroundColor
         scrollView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
         scrollView.center = self.view.center
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height:2000)
+        scrollView.contentSize = CGSize(width: self.width, height:2000)
         scrollView.bounces = false
         scrollView.indicatorStyle = .default
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -68,7 +68,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
 //                button.setTitle(title, for: .normal)
                 
                 
-                button.frame = CGRect(x: 20, y: MakeView.buttonSpace*(self.i)+15, width: Int(self.view.frame.size.width)-40, height: MakeView.buttonHeight)
+                button.frame = CGRect(x: 20, y: MakeView.buttonSpace*(self.i)+15, width: self.width-40, height: MakeView.buttonHeight)
                 button.setTitleColor(UIColor.black, for: .normal)
                 button.backgroundColor = MakeView.buttonColor
                 button.addTarget(self, action: #selector(self.allSentence(sender:)), for: .touchUpInside)
@@ -76,7 +76,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
                 button.layer.cornerRadius = MakeView.cornerRadius
                 self.scrollView.addSubview(button)
                 
-                let buttonWidth = self.view.frame.size.width-40
+                let buttonWidth = self.width-40
                 
                 let buttonLabel1 = UILabel()
                 buttonLabel1.backgroundColor = UIColor.white
@@ -89,7 +89,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
                 let buttonLabel2 = UILabel()
                 buttonLabel2.backgroundColor = UIColor.white
                 buttonLabel2.textColor = UIColor.black
-                buttonLabel2.frame = CGRect(x: buttonWidth*3/4, y: 0, width:buttonWidth/4-10 , height: CGFloat(MakeView.buttonHeight))
+                buttonLabel2.frame = CGRect(x: buttonWidth*3/4, y: 0, width:buttonWidth/4-10 , height: MakeView.buttonHeight)
                 buttonLabel2.font = UIFont.systemFont(ofSize: 11.0)
                 buttonLabel2.text = "\(dateStr)"
                 buttonLabel2.textAlignment = .right
@@ -100,7 +100,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
             }
             
             self.makeUnderButton()
-            self.scrollView.contentSize =  CGSize(width: self.view.frame.size.width, height: CGFloat(MakeView.buttonSpace*(self.i+2)))
+            self.scrollView.contentSize =  CGSize(width: self.width, height: MakeView.buttonSpace*(self.i+2))
             //こうやって後から修正もできる    でもそれは更新しないと反応しなかった　修正同期処理にすれば何とかなった
             
         }
@@ -115,7 +115,8 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @objc func goback() {
+    @objc func goback(sender:UIButton) {
+        MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: true, completion: nil)
     }
     @objc func goEdit() {
@@ -130,15 +131,15 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     func makeUnderButton(){
         
         let button = UIButton()
-        button.setTitle("戻る", for: .normal)
+        button.setTitle("←", for: .normal)
         button.frame = CGRect(x: 0, y: Int(self.height)-MakeView.underButtonHeight, width: width/3-10, height: MakeView.underButtonHeight)
-        button.addTarget(self, action: #selector(self.goback), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button)
         
         let button2 = UIButton()
-        button2.setTitle("追加", for: .normal)
+        button2.setTitle("+", for: .normal)
         button2.frame = CGRect(x: width/3, y: Int(self.height)-MakeView.underButtonHeight, width: width/3, height: MakeView.underButtonHeight)
         button2.addTarget(self, action: #selector(self.goEdit), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
@@ -146,7 +147,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         self.view.addSubview(button2)
         
         let button3 = UIButton()
-        button3.setTitle("更新", for: .normal)
+        button3.setTitle("🔁", for: .normal)
         button3.frame = CGRect(x: width*2/3+10, y: Int(self.height)-MakeView.underButtonHeight, width: width/3-10, height: MakeView.underButtonHeight)
         button3.addTarget(self, action: #selector(self.reload), for: .touchUpInside)
         button3.setTitleColor(UIColor.black, for: .normal)
@@ -161,7 +162,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     }
     
     @objc func allSentence(sender:UIButton){
-        
+        MakeView.puyopuyo(sender:sender)
         let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
         let allSentence = self.teatures[numberOfButton]
         let alert = UIAlertController(title: "全文", message: allSentence, preferredStyle: .alert)

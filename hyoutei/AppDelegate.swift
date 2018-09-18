@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
     
-        
+        if let start:Int = UserDefaults.standard.object(forKey: "start") as? Int{
+            UserDefaults.standard.set(Int(start)+1, forKey: "start")
+        }
+        else{
+            UserDefaults.standard.set(1, forKey: "start")
+        }
         
         return true
     }

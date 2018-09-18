@@ -6,6 +6,15 @@
 //  Copyright © 2018年 hamasugartanaka. All rights reserved.
 //
 
+// TOdo
+//
+//教授の追加機能
+// 大仏とかを点数化して平均を出す
+// アイコンとボタンの画像を変える
+// チュートリアルを作り込む
+//上にラベルがないとわかりにくい
+// コードをもっと綺麗にする
+
 import UIKit
 import Firebase
 

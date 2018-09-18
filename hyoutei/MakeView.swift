@@ -23,5 +23,18 @@ class MakeView{
     static let underButtonColor = UIColor(red: 255.0/256, green: 169.0/256, blue: 146.0/256, alpha: 1.0)
     static let underButtonHeight = 80
     
+    static func puyopuyo(sender:UIButton){
+        
+        UIView.animate(withDuration: 0.1,
+                       
+            animations: { () -> Void in
+                // 拡大用アフィン行列を作成する.
+                sender.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
+                // 縮小用アフィン行列を作成する.
+                sender.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            })
+
+    }
+    
     
 }

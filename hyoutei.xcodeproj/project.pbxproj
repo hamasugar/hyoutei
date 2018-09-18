@@ -21,7 +21,6 @@
 		CEDF4C33213A70EC00487EC1 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */; };
 		CEDF4C35213A83F700487EC1 /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */; };
 		CEE5623B2150F12600C30D3C /* MakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5623A2150F12600C30D3C /* MakeView.swift */; };
-		CEE80D4A2146558600518CFE /* seikiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE80D492146558600518CFE /* seikiViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +43,6 @@
 		CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
 		CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		CEE5623A2150F12600C30D3C /* MakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeView.swift; sourceTree = "<group>"; };
-		CEE80D492146558600518CFE /* seikiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seikiViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +98,6 @@
 			children = (
 				CE87985021327E1A004AA3A9 /* AppDelegate.swift */,
 				CE87985421327E1A004AA3A9 /* Main.storyboard */,
-				CEE80D492146558600518CFE /* seikiViewController.swift */,
 				CE87985221327E1A004AA3A9 /* ViewController.swift */,
 				CEDF4C302138296C00487EC1 /* LoginViewController.swift */,
 				CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */,
@@ -253,7 +250,6 @@
 				CEE5623B2150F12600C30D3C /* MakeView.swift in Sources */,
 				CEDF4C33213A70EC00487EC1 /* SchoolViewController.swift in Sources */,
 				CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */,
-				CEE80D4A2146558600518CFE /* seikiViewController.swift in Sources */,
 				CEDF4C35213A83F700487EC1 /* SubjectViewController.swift in Sources */,
 				CE8B0579213E442600D48E84 /* EditViewController.swift in Sources */,
 				CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */,
