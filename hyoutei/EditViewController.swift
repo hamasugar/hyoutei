@@ -9,24 +9,22 @@
 import UIKit
 import Firebase
 
-class editViewController: UIViewController {
+let instance = CommentViewController()
+class EditViewController: UIViewController {
     
-    var ref:DatabaseReference!
+    var ref: DatabaseReference!
+    var width:Int{return Int(self.view.frame.size.width)}
+    var height:Int{return Int(self.view.frame.size.height)}
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         let button2 = UIButton()
         button2.setTitle("戻る", for: .normal)
-        button2.frame = CGRect(x: Int(self.view.frame.size.width-100), y: Int(self.view.frame.size.height-90), width: 100, height: 90)
+        button2.frame = CGRect(x: Int(self.width/2-50), y: Int(self.height-90), width: 100, height: 90)
         button2.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
-        button2.backgroundColor = UIColor.green
+        button2.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button2)
-        
-        
-
         // Do any additional setup after loading the view.
     }
 
@@ -34,41 +32,26 @@ class editViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     @IBOutlet weak var textField: UITextField!
-    
-
     @IBAction func addButton(_ sender: Any) {
-        
-        
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            
-            
-            let dictionary:NSDictionary = snapshot.value as! NSDictionary
-            var karinumber:String = dictionary["number"]! as! String
-            var number = Int(karinumber)
+            let dictionary: NSDictionary = snapshot.value as! NSDictionary
+            let karinumber: String = dictionary["number"]! as! String
+            let number = Int(karinumber)
             let StringNumber = (number!+1).description
             self.ref.child("number").setValue(StringNumber)
             self.ref.child("\(StringNumber)").setValue(self.textField.text)
-            
-            
-            
-            
+            self.ref.child("\(StringNumber)time").setValue(Int(NSDate().timeIntervalSince1970))
         })
-            
-    
+    }
+    @objc func goBack() {
         
+        self.dismiss(animated: true, completion: nil)
+
     }
     
     
-    @objc func goBack(){
-        
-        self.dismiss(animated: false, completion: nil)
-    }
-    
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textField.endEditing(true)
     }
