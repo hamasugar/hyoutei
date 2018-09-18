@@ -14,13 +14,14 @@
 		CE87985821327E1F004AA3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE87985721327E1F004AA3A9 /* Assets.xcassets */; };
 		CE87985B21327E1F004AA3A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87985921327E1F004AA3A9 /* LaunchScreen.storyboard */; };
 		CE87986321327EA8004AA3A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */; };
-		CE8B0579213E442600D48E84 /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B0578213E442600D48E84 /* editViewController.swift */; };
-		CEDF4C2A2136D9F300487EC1 /* teachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C292136D9F300487EC1 /* teachersViewController.swift */; };
+		CE8B0579213E442600D48E84 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B0578213E442600D48E84 /* EditViewController.swift */; };
+		CEDF4C2A2136D9F300487EC1 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C292136D9F300487EC1 /* TeachersViewController.swift */; };
 		CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */; };
-		CEDF4C2F2138278800487EC1 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C2E2138278800487EC1 /* String+Ex.swift */; };
-		CEDF4C312138296D00487EC1 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C302138296C00487EC1 /* loginViewController.swift */; };
-		CEDF4C33213A70EC00487EC1 /* schoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C32213A70EC00487EC1 /* schoolViewController.swift */; };
-		CEDF4C35213A83F700487EC1 /* subjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C34213A83F700487EC1 /* subjectViewController.swift */; };
+		CEDF4C312138296D00487EC1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C302138296C00487EC1 /* LoginViewController.swift */; };
+		CEDF4C33213A70EC00487EC1 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */; };
+		CEDF4C35213A83F700487EC1 /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */; };
+		CEE5623B2150F12600C30D3C /* MakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5623A2150F12600C30D3C /* MakeView.swift */; };
+		CEE80D4A2146558600518CFE /* seikiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE80D492146558600518CFE /* seikiViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,14 +36,15 @@
 		CE87985A21327E1F004AA3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE87985C21327E1F004AA3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CE8B0578213E442600D48E84 /* editViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
-		CEDF4C292136D9F300487EC1 /* teachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teachersViewController.swift; sourceTree = "<group>"; };
+		CE8B0578213E442600D48E84 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		CEDF4C292136D9F300487EC1 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
 		CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		CEDF4C2D213826A900487EC1 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		CEDF4C2E2138278800487EC1 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
-		CEDF4C302138296C00487EC1 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
-		CEDF4C32213A70EC00487EC1 /* schoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schoolViewController.swift; sourceTree = "<group>"; };
-		CEDF4C34213A83F700487EC1 /* subjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subjectViewController.swift; sourceTree = "<group>"; };
+		CEDF4C302138296C00487EC1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
+		CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
+		CEE5623A2150F12600C30D3C /* MakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeView.swift; sourceTree = "<group>"; };
+		CEE80D492146558600518CFE /* seikiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seikiViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,14 +100,15 @@
 			children = (
 				CE87985021327E1A004AA3A9 /* AppDelegate.swift */,
 				CE87985421327E1A004AA3A9 /* Main.storyboard */,
+				CEE80D492146558600518CFE /* seikiViewController.swift */,
 				CE87985221327E1A004AA3A9 /* ViewController.swift */,
-				CEDF4C302138296C00487EC1 /* loginViewController.swift */,
-				CEDF4C32213A70EC00487EC1 /* schoolViewController.swift */,
-				CEDF4C34213A83F700487EC1 /* subjectViewController.swift */,
-				CEDF4C292136D9F300487EC1 /* teachersViewController.swift */,
+				CEDF4C302138296C00487EC1 /* LoginViewController.swift */,
+				CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */,
+				CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */,
+				CEE5623A2150F12600C30D3C /* MakeView.swift */,
+				CEDF4C292136D9F300487EC1 /* TeachersViewController.swift */,
 				CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */,
-				CE8B0578213E442600D48E84 /* editViewController.swift */,
-				CEDF4C2E2138278800487EC1 /* String+Ex.swift */,
+				CE8B0578213E442600D48E84 /* EditViewController.swift */,
 				CE87985721327E1F004AA3A9 /* Assets.xcassets */,
 				CE87985921327E1F004AA3A9 /* LaunchScreen.storyboard */,
 				CE87985C21327E1F004AA3A9 /* Info.plist */,
@@ -126,6 +129,7 @@
 				CE87984A21327E1A004AA3A9 /* Frameworks */,
 				CE87984B21327E1A004AA3A9 /* Resources */,
 				0DEE6BD2DDC8DBC1E20A07D6 /* [CP] Embed Pods Frameworks */,
+				CEF58015214956E1009FD739 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -226,6 +230,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CEF58015214956E1009FD739 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -233,14 +250,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDF4C33213A70EC00487EC1 /* schoolViewController.swift in Sources */,
+				CEE5623B2150F12600C30D3C /* MakeView.swift in Sources */,
+				CEDF4C33213A70EC00487EC1 /* SchoolViewController.swift in Sources */,
 				CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */,
-				CEDF4C35213A83F700487EC1 /* subjectViewController.swift in Sources */,
-				CEDF4C2F2138278800487EC1 /* String+Ex.swift in Sources */,
-				CE8B0579213E442600D48E84 /* editViewController.swift in Sources */,
+				CEE80D4A2146558600518CFE /* seikiViewController.swift in Sources */,
+				CEDF4C35213A83F700487EC1 /* SubjectViewController.swift in Sources */,
+				CE8B0579213E442600D48E84 /* EditViewController.swift in Sources */,
 				CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */,
-				CEDF4C312138296D00487EC1 /* loginViewController.swift in Sources */,
-				CEDF4C2A2136D9F300487EC1 /* teachersViewController.swift in Sources */,
+				CEDF4C312138296D00487EC1 /* LoginViewController.swift in Sources */,
+				CEDF4C2A2136D9F300487EC1 /* TeachersViewController.swift in Sources */,
 				CE87985121327E1A004AA3A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +407,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR34XK582H;
 				INFOPLIST_FILE = hyoutei/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR34XK582H;
 				INFOPLIST_FILE = hyoutei/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

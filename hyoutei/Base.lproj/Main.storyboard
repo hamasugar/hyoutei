@@ -4,16 +4,60 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Seiki View Controller-->
+        <scene sceneID="Ouw-ra-f2y">
+            <objects>
+                <viewController id="d3a-qd-rY4" customClass="seikiViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1d4-kL-dcm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79g-wL-OSa">
+                                <rect key="frame" x="20" y="318.5" width="335" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvq-wX-3we">
+                                <rect key="frame" x="137" y="183.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="DaH-gN-j6y"/>
+                                    <constraint firstAttribute="height" constant="100" id="DpV-TE-P0Y"/>
+                                </constraints>
+                                <state key="normal" title="テスト"/>
+                                <connections>
+                                    <action selector="button1:" destination="d3a-qd-rY4" eventType="touchUpInside" id="X6L-d0-lI6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oCz-3s-d8W" firstAttribute="trailing" secondItem="79g-wL-OSa" secondAttribute="trailing" constant="20" id="9fJ-D1-Fv7"/>
+                            <constraint firstItem="79g-wL-OSa" firstAttribute="centerY" secondItem="1d4-kL-dcm" secondAttribute="centerY" id="Noe-7D-V8B"/>
+                            <constraint firstItem="79g-wL-OSa" firstAttribute="leading" secondItem="oCz-3s-d8W" secondAttribute="leading" constant="20" id="Wrt-aH-Cam"/>
+                            <constraint firstItem="qvq-wX-3we" firstAttribute="centerY" secondItem="1d4-kL-dcm" secondAttribute="centerY" constant="-100" id="bX0-zd-Iec"/>
+                            <constraint firstItem="qvq-wX-3we" firstAttribute="centerX" secondItem="1d4-kL-dcm" secondAttribute="centerX" id="eou-d9-6wt"/>
+                            <constraint firstItem="79g-wL-OSa" firstAttribute="centerX" secondItem="1d4-kL-dcm" secondAttribute="centerX" id="miw-c3-GAK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oCz-3s-d8W"/>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="79g-wL-OSa" id="IVD-ub-zGN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tuK-yK-dQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2515" y="-711"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="69t-03-95Q">
             <objects>
-                <viewController id="rtP-sE-BDf" customClass="loginViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rtP-sE-BDf" customClass="LoginViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ntJ-D6-gto">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +129,7 @@
         <!--School View Controller-->
         <scene sceneID="l0b-gO-JQf">
             <objects>
-                <viewController id="ebj-Zp-Cny" customClass="schoolViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ebj-Zp-Cny" customClass="SchoolViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gY3-Rn-V3W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +147,7 @@
         <!--Subject View Controller-->
         <scene sceneID="R55-U0-eCk">
             <objects>
-                <viewController id="l0a-s3-zwy" customClass="subjectViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l0a-s3-zwy" customClass="SubjectViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gSo-Sb-6OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,7 +155,7 @@
                         <viewLayoutGuide key="safeArea" id="0eJ-jO-MRT"/>
                     </view>
                     <connections>
-                        <segue destination="HPq-Tj-ZRf" kind="presentation" identifier="goTeacher" modalTransitionStyle="flipHorizontal" id="xlU-3S-xBh"/>
+                        <segue destination="HPq-Tj-ZRf" kind="presentation" identifier="goTeacher" modalTransitionStyle="coverVertical" id="xlU-3S-xBh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uh5-am-sgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +275,7 @@
         <!--Teachers View Controller-->
         <scene sceneID="HE6-bd-W9e">
             <objects>
-                <viewController id="HPq-Tj-ZRf" customClass="teachersViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HPq-Tj-ZRf" customClass="TeachersViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpe-8c-X9O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +283,7 @@
                         <viewLayoutGuide key="safeArea" id="Ei5-va-Rol"/>
                     </view>
                     <connections>
-                        <segue destination="xcv-q0-ts4" kind="presentation" identifier="goComment" modalTransitionStyle="partialCurl" id="xgo-cu-dnd"/>
+                        <segue destination="xcv-q0-ts4" kind="presentation" identifier="goComment" modalTransitionStyle="coverVertical" id="xgo-cu-dnd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVU-B7-T1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,7 +301,7 @@
                         <viewLayoutGuide key="safeArea" id="asX-wa-fAN"/>
                     </view>
                     <connections>
-                        <segue destination="vq5-df-1s1" kind="presentation" identifier="goEdit" id="O1D-wF-ypV"/>
+                        <segue destination="vq5-df-1s1" kind="presentation" identifier="goEdit" modalTransitionStyle="coverVertical" id="O1D-wF-ypV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1h-bx-heX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,7 +311,7 @@
         <!--Edit View Controller-->
         <scene sceneID="hFw-49-3V4">
             <objects>
-                <viewController id="vq5-df-1s1" customClass="editViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vq5-df-1s1" customClass="EditViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h75-sU-naN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +330,9 @@
                                     <constraint firstAttribute="height" constant="100" id="G1L-ft-2YS"/>
                                     <constraint firstAttribute="width" constant="100" id="tb9-YO-gik"/>
                                 </constraints>
-                                <state key="normal" title="追加"/>
+                                <state key="normal" title="追加">
+                                    <color key="titleColor" red="1" green="0.66425238715277779" blue="0.57115342881944442" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="addButton:" destination="vq5-df-1s1" eventType="touchUpInside" id="2qK-Rm-tzd"/>
                                 </connections>
@@ -305,6 +351,7 @@
                     </view>
                     <connections>
                         <outlet property="textField" destination="Ecv-gp-1di" id="fId-Qk-y9G"/>
+                        <segue destination="xcv-q0-ts4" kind="show" identifier="goComment" id="DlJ-FG-zll"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4N4-o2-Zhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -312,4 +359,7 @@
             <point key="canvasLocation" x="2970" y="344"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DlJ-FG-zll"/>
+    </inferredMetricsTieBreakers>
 </document>
