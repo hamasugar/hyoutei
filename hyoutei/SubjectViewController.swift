@@ -16,6 +16,8 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
     var subject: String! //次の画面に表示するための学校を定義す
     let scrollView = UIScrollView()
     var numberOfDictionary: Int!
+    var width:Int{return Int(self.view.frame.size.width)}
+    var height:Int{return Int(self.view.frame.size.height)}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
             let title = self.subjects[i]
             print (title)
             button.setTitle(title, for: .normal)
-            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i)+15, width: Int(self.view.frame.size.width-20), height: MakeView.buttonHeight)
+            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i)+15, width: self.width-20, height: MakeView.buttonHeight)
             button.addTarget(self, action: #selector(self.onClick(sender:)), for: .touchUpInside)
             button.setTitleColor(UIColor.black, for: .normal)
             button.backgroundColor = MakeView.buttonColor
@@ -53,19 +55,20 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
             self.scrollView.addSubview(button)
             i+=1
         }
-        self.scrollView.contentSize =  CGSize(width: self.view.frame.size.width, height: CGFloat(MakeView.buttonSpace*(i+2)))
+        self.scrollView.contentSize =  CGSize(width: self.width, height: MakeView.buttonSpace*(i+2))
         
         
         let button = UIButton()
         button.setTitle("戻る", for: .normal)
-        button.frame = CGRect(x: 10, y: Int(self.view.frame.size.height)-MakeView.underButtonHeight, width: Int(self.view.frame.size.width-20), height: Int(MakeView.underButtonHeight))
-        button.addTarget(self, action: #selector(self.goback), for: .touchUpInside)
+        button.frame = CGRect(x: 10, y: self.height-MakeView.underButtonHeight, width: self.width-20, height: Int(MakeView.underButtonHeight))
+        button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button)
     }
 
     @objc func onClick(sender: UIButton) {
+        MakeView.puyopuyo(sender:sender)
         //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
         let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
         subject = subjects[numberOfButton]
@@ -90,7 +93,8 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
         nextVC.school = school!
         nextVC.subject = subject!
     }
-    @objc func goback() {
+    @objc func goback(sender:UIButton) {
+        MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: true, completion: nil)
     }
 }

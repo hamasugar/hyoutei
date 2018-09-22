@@ -8,12 +8,15 @@
 
 import UIKit
 import Firebase
+import StoreKit
 
 class SchoolViewController: UIViewController, UIScrollViewDelegate {
     var schools = [String]()
 
     var school: String! //次の画面に表示するための学校を定義す
     let scrollView = UIScrollView()
+    var width:Int{return Int(self.view.frame.size.width)}
+    var height:Int{return Int(self.view.frame.size.height)}
 
     var numberOfDictionary: Int!
     override func viewDidLoad() {
@@ -31,6 +34,10 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             //ボタンを作るための処理をクロージャーの中に入れておかないとスレッドが複数生成されてnumberOfDictionaryが最初の値を参照してしま
             self.makeButton()
         })
+        
+        if (UserDefaults.standard.object(forKey: "start") as? Int)! <= 10{
+        SKStoreReviewController.requestReview()
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -46,7 +53,7 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             let title = self.schools[i]
             print (title)
             button.setTitle(title, for: .normal)
-            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i)+15, width: Int(self.view.frame.size.width-20), height: MakeView.buttonHeight)
+            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i)+15, width: self.width-20, height: MakeView.buttonHeight)
             button.addTarget(self, action: #selector(self.onClick(sender:)), for: .touchUpInside)
             button.setTitleColor(UIColor.black, for: .normal)
             button.backgroundColor = MakeView.buttonColor
@@ -56,10 +63,11 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             i+=1
         }
         
-        self.scrollView.contentSize =  CGSize(width: self.view.frame.size.width, height: CGFloat(MakeView.buttonSpace*(i+2)))
+        self.scrollView.contentSize =  CGSize(width: CGFloat(self.width), height: CGFloat(MakeView.buttonSpace*(i+2)))
     }
 
     @objc func onClick(sender: UIButton) {
+        MakeView.puyopuyo(sender:sender)
         //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
         let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
         school = schools[numberOfButton]
@@ -67,9 +75,9 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
     }
     func makeScrollView() {
         scrollView.backgroundColor = MakeView.backgroundColor
-        scrollView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
+        scrollView.frame.size = CGSize(width: self.width, height: self.height)
         scrollView.center = self.view.center
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 2000) //ここが全体の大きさなのかあ
+        scrollView.contentSize = CGSize(width: self.width, height: 2000) //ここが全体の大きさなのかあ
         scrollView.bounces = false
         scrollView.indicatorStyle = .default
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

@@ -6,6 +6,12 @@
 //  Copyright © 2018年 hamasugartanaka. All rights reserved.
 //
 
+// TOdo
+// アイコンとボタンの画像を変える
+// チュートリアルを作り込む
+//上にラベルがないとわかりにくい
+
+
 import UIKit
 import Firebase
 
