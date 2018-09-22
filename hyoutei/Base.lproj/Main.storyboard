@@ -183,11 +183,27 @@
                     </view>
                     <connections>
                         <segue destination="xcv-q0-ts4" kind="presentation" identifier="goComment" modalTransitionStyle="coverVertical" id="xgo-cu-dnd"/>
+                        <segue destination="f4r-jX-5rw" kind="presentation" identifier="goAdd" animates="NO" modalTransitionStyle="coverVertical" id="vJB-rK-4d3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVU-B7-T1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873" y="287"/>
+        </scene>
+        <!--Add Teacher View Controller-->
+        <scene sceneID="2kN-rM-M6j">
+            <objects>
+                <viewController id="f4r-jX-5rw" customClass="AddTeacherViewController" customModule="hyoutei" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pin-bq-em5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KZu-PL-URc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-VO-cyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1214" y="1079"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="cYa-ah-406">
@@ -227,6 +243,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DlJ-FG-zll"/>
+        <segue reference="xgo-cu-dnd"/>
     </inferredMetricsTieBreakers>
 </document>

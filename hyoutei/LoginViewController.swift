@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         
         if let id = UserDefaults.standard.object(forKey: "ID"){
             
-            self.textField.text = id as! String
+            performSegue(withIdentifier: "goSchool", sender: nil)
         }
         
         self.textField.frame = CGRect(x: self.width*4/10, y: self.height/2-100, width: self.width*5/10, height: 30)

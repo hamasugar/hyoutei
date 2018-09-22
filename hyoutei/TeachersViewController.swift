@@ -23,6 +23,7 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeScrollView()
+        teachers = [String]()
         let ref = Database.database().reference().child("/college/\(school!)/\(subject!)")
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             var dictionary: NSDictionary!
@@ -60,18 +61,35 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         
         let button = UIButton()
         button.setTitle("戻る", for: .normal)
-        button.frame = CGRect(x: 10, y: self.height-MakeView.underButtonHeight, width: self.width-20, height: MakeView.underButtonHeight)
+        button.frame = CGRect(x: 10, y: self.height-MakeView.underButtonHeight, width: self.width/3-20, height: MakeView.underButtonHeight)
         button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button)
+        
+        let addbutton = UIButton()
+        addbutton.setTitle("教授を追加", for: .normal)
+        addbutton.frame = CGRect(x: self.width/3+10, y: self.height-MakeView.underButtonHeight, width: self.width/3-20, height: MakeView.underButtonHeight)
+        addbutton.addTarget(self, action: #selector(self.add), for: .touchUpInside)
+        addbutton.setTitleColor(UIColor.black, for: .normal)
+        addbutton.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(addbutton)
+        
+        let reloadbutton = UIButton()
+        reloadbutton.setTitle("🔁", for: .normal)
+        reloadbutton.frame = CGRect(x: self.width*2/3+10, y: self.height-MakeView.underButtonHeight, width: self.width/3-20, height: MakeView.underButtonHeight)
+        reloadbutton.addTarget(self, action: #selector(self.reload), for: .touchUpInside)
+        reloadbutton.setTitleColor(UIColor.black, for: .normal)
+        reloadbutton.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(reloadbutton)
     }
+    
     @objc func onClick(sender: UIButton) {
         MakeView.puyopuyo(sender:sender)
         //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
         let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
         teacher = teachers[numberOfButton]
-        print (subject)
+        
         performSegue(withIdentifier: "goComment", sender: nil)
     }
     
@@ -89,14 +107,32 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        if segue.identifier ==  "goComment"{
             let nextVC: CommentViewController = segue.destination as! CommentViewController
             nextVC.school = school!
             nextVC.subject = subject!
             nextVC.teacher = teacher!
         }
+        
+        if segue.identifier == "goAdd"{
+                let nextVC: AddTeacherViewController = segue.destination as! AddTeacherViewController
+                nextVC.ref = Database.database().reference().child("college/\(school!)/\(subject!)")
+            
+        }
+        }
     @objc func goback(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func add(){
+        
+        performSegue(withIdentifier: "goAdd", sender: nil)
+    }
+    
+    @objc func reload(){
+        loadView()
+        viewDidLoad()
     }
 
 }

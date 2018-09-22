@@ -1,16 +1,15 @@
 //
-//  editViewController.swift
+//  AddTeacherViewController.swift
 //  hyoutei
 //
-//  Created by user on 2018/09/04.
+//  Created by user on 2018/09/22.
 //  Copyright © 2018年 hamasugartanaka. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-let instance = CommentViewController()
-class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate {
+class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate {
     
     
     
@@ -24,9 +23,10 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     let picker = UIPickerView()
     let scoreArray = [0,1,2,3,4,5,6,7,8,9,10]
     var score:Int = 5
+    var textField2 = UITextField()
     let judgeLabel = UILabel()
     let commentLabel = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
@@ -47,6 +47,12 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         addButton.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(addButton)
         
+        textField2.frame =  CGRect(x: 50, y: self.height*2/10, width: self.width-100, height: 50)
+        textField2.backgroundColor = UIColor.white
+        textField2.placeholder = "教授の名前を記入"
+        self.view.addSubview(textField2)
+        
+        
         textField.frame = CGRect(x: 50, y: self.height*3/10, width: self.width-100, height: self.height*2/10)
         textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         textField.text = "受けた授業やコメントを記入"
@@ -62,7 +68,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         self.view.addSubview(judgeLabel)
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -72,32 +78,31 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     @objc func goBack(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: true, completion: nil)
-
+        
     }
     
     @objc func add(sender:UIButton){
-            MakeView.puyopuyo(sender:sender)
+        MakeView.puyopuyo(sender:sender)
         
-            let int = Int(NSDate().timeIntervalSince1970)
-            let timeDate = NSDate(timeIntervalSince1970: TimeInterval(int))
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM"
-            let key: String = formatter.string(from: timeDate as Date)
-        
-        if textField.text!.count == 0{
+        if textField2.text!.count == 0 || textField.text!.count == 0{
             let alert = UIAlertController(title: "空白があります", message: "教授名とテキストを入力してください", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true, completion: nil)
             return
         }
         
-        if textField.text!.count > 300{
+        if textField2.text!.count > 300 || textField.text!.count > 300{
             let alert = UIAlertController(title: "文字数制限オーバー", message: "300文字以内で入力してください", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true, completion: nil)
             return
         }
         
+        let int = Int(NSDate().timeIntervalSince1970)
+        let timeDate = NSDate(timeIntervalSince1970: TimeInterval(int))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM"
+        let key: String = formatter.string(from: timeDate as Date)
         if let count:Int = UserDefaults.standard.object(forKey: key) as? Int{
             
             UserDefaults.standard.set(count+1, forKey: key)
@@ -108,30 +113,26 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true, completion: nil)
                 return
-                }
+            }
             
         }
         else{
-             UserDefaults.standard.set(1, forKey: key)
+            UserDefaults.standard.set(1, forKey: key)
         }
         
-            ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            let dictionary: NSDictionary = snapshot.value as! NSDictionary
-            let karinumber: String = dictionary["number"]! as! String
-            let number = Int(karinumber)
-            let StringNumber = (number!+1).description
-            self.ref.child("number").setValue(StringNumber)
-            self.ref.child("\(StringNumber)").setValue(self.textField.text)
-            self.ref.child("\(StringNumber)time").setValue(Int(NSDate().timeIntervalSince1970))
-            let scoreNow: Int = dictionary["score"]! as! Int
-            self.ref.child("score").setValue(scoreNow+self.score)
-                
-        })
+        
+            self.ref.child("\(self.textField2.text!)/number").setValue("1")
+            self.ref.child("\(self.textField2.text!)/1").setValue(self.textField.text)
+            self.ref.child("\(self.textField2.text!)/1time").setValue(Int(NSDate().timeIntervalSince1970))
+            self.ref.child("\(self.textField2.text!)/score").setValue(self.score)
+            self.ref.child("\(self.textField2.text!)/name").setValue(self.textField2.text!)
+            
+       
         
     }
     
     
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textField.endEditing(true)
     }
@@ -161,13 +162,13 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

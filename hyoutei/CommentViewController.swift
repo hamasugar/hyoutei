@@ -13,12 +13,13 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     var school: String!
     var subject: String!
     var teacher: String!
-    var  numberOfArray: Int!
+    var numberOfArray: Int!
     var dictionary: NSDictionary!
     var teatures = [String]()
     var subjectref: DatabaseReference!
     let scrollView = UIScrollView()
     var i:Int = 0
+    var teacherLabel = UILabel()
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
     
@@ -36,6 +37,14 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         scrollView.delegate = self
         self.view.addSubview(scrollView)
+        
+        
+        teacherLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
+        teacherLabel.text = self.teacher!
+        teacherLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
+        teacherLabel.backgroundColor = MakeView.underButtonColor
+        teacherLabel.textAlignment = .center
+        self.view.addSubview(teacherLabel)
         
         
         subjectref = Database.database().reference().child("/college/\(school!)/\(subject!)/\(teacher!)")
@@ -56,7 +65,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
             self.i = 0
 
             while self.i<self.numberOfArray {
-                print (self.i)
+            
                 let button = UIButton()
                 let time = self.dictionary!["\(self.i+1)time"] as! Int
                 let timeDate = NSDate(timeIntervalSince1970: TimeInterval(time))
@@ -64,11 +73,9 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
                 formatter.dateFormat = "yyyy/MM/dd"
                 let dateStr: String = formatter.string(from: timeDate as Date)
                 // ここの型変換はマジで慣れない　nstag int timeInterval nsdate date と4回型変換がいる
-//                let title = "\(self.teatures[self.i]) \(dateStr)"
-//                button.setTitle(title, for: .normal)
+
                 
-                
-                button.frame = CGRect(x: 20, y: MakeView.buttonSpace*(self.i)+15, width: self.width-40, height: MakeView.buttonHeight)
+                button.frame = CGRect(x: 20, y: MakeView.buttonSpace*(self.i+1)+15, width: self.width-40, height: MakeView.buttonHeight)
                 button.setTitleColor(UIColor.black, for: .normal)
                 button.backgroundColor = MakeView.buttonColor
                 button.addTarget(self, action: #selector(self.allSentence(sender:)), for: .touchUpInside)
@@ -101,6 +108,14 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
             
             self.makeUnderButton()
             self.scrollView.contentSize =  CGSize(width: self.width, height: MakeView.buttonSpace*(self.i+2))
+            
+            let scoresum = self.dictionary!["score"]! as! Int
+            let scoreDouble = Double(scoresum)
+            let score:Double = scoreDouble/Double(self.numberOfArray)
+            let score10 = score*10
+            
+            
+            self.teacherLabel.text = "\(self.teacher!) \(round(score10)/10)"
             //こうやって後から修正もできる    でもそれは更新しないと反応しなかった　修正同期処理にすれば何とかなった
             
         }
@@ -120,6 +135,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     @objc func goEdit() {
+        UserDefaults.standard.set("commentOnly", forKey: "edit")
         performSegue(withIdentifier: "goEdit", sender: nil)
     }
     @objc func reload(){
@@ -163,7 +179,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     
     @objc func allSentence(sender:UIButton){
         MakeView.puyopuyo(sender:sender)
-        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
+        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace-1
         let allSentence = self.teatures[numberOfButton]
         let alert = UIAlertController(title: "全文", message: allSentence, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
