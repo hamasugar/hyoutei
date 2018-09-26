@@ -17,11 +17,21 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
     let scrollView = UIScrollView()
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
+    let topLabel = UILabel()
 
     var numberOfDictionary: Int!
     override func viewDidLoad() {
         super.viewDidLoad()
         makeScrollView()
+        
+        topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
+        topLabel.text = "大学名を選択"
+        topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
+        topLabel.backgroundColor = MakeView.underButtonColor
+        topLabel.textAlignment = .center
+        self.view.addSubview(topLabel)
+        
+        
         let ref = Database.database().reference().child("college")
 
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -53,7 +63,7 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             let title = self.schools[i]
             print (title)
             button.setTitle(title, for: .normal)
-            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i)+15, width: self.width-20, height: MakeView.buttonHeight)
+            button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i+1)+15, width: self.width-20, height: MakeView.buttonHeight)
             button.addTarget(self, action: #selector(self.onClick(sender:)), for: .touchUpInside)
             button.setTitleColor(UIColor.black, for: .normal)
             button.backgroundColor = MakeView.buttonColor
@@ -69,7 +79,7 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
     @objc func onClick(sender: UIButton) {
         MakeView.puyopuyo(sender:sender)
         //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
-        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace
+        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace-1
         school = schools[numberOfButton]
         performSegue(withIdentifier: "goSubject", sender: nil)
     }

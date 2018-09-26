@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rtP-sE-BDf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rtP-sE-BDf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvq-wX-3we">
-                                <rect key="frame" x="137" y="183.5" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="183.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="DaH-gN-j6y"/>
                                     <constraint firstAttribute="height" constant="100" id="DpV-TE-P0Y"/>
@@ -65,7 +65,7 @@
                         <viewLayoutGuide key="safeArea" id="faM-NS-nvZ"/>
                     </view>
                     <connections>
-                        <segue destination="ebj-Zp-Cny" kind="presentation" identifier="goSchool" id="Zz5-z1-Mux"/>
+                        <segue destination="ebj-Zp-Cny" kind="presentation" identifier="goSchool" animates="NO" id="Zz5-z1-Mux"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odc-uV-X8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,7 +83,7 @@
                         <viewLayoutGuide key="safeArea" id="gAG-x8-BzM"/>
                     </view>
                     <connections>
-                        <segue destination="l0a-s3-zwy" kind="presentation" identifier="goSubject" modalTransitionStyle="coverVertical" id="RBx-OL-CpY"/>
+                        <segue destination="l0a-s3-zwy" kind="presentation" identifier="goSubject" animates="NO" modalTransitionStyle="coverVertical" id="RBx-OL-CpY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpC-Ss-zlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,7 +101,7 @@
                         <viewLayoutGuide key="safeArea" id="0eJ-jO-MRT"/>
                     </view>
                     <connections>
-                        <segue destination="HPq-Tj-ZRf" kind="presentation" identifier="goTeacher" modalTransitionStyle="coverVertical" id="xlU-3S-xBh"/>
+                        <segue destination="HPq-Tj-ZRf" kind="presentation" identifier="goTeacher" animates="NO" modalTransitionStyle="coverVertical" id="xlU-3S-xBh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uh5-am-sgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xi5-K3-Ypv">
-                                <rect key="frame" x="137" y="283" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="4d8-hc-JTx"/>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7O-cb-yuF">
-                                <rect key="frame" x="167" y="213.5" width="40" height="40"/>
+                                <rect key="frame" x="167.5" y="213.5" width="40" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="NeO-Rh-5rY"/>
@@ -145,7 +145,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ogc-L9-u5m">
-                                <rect key="frame" x="67" y="383.5" width="240" height="300"/>
+                                <rect key="frame" x="67.5" y="383.5" width="240" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="R84-Xa-efU"/>
                                     <constraint firstAttribute="height" constant="300" id="qPc-lC-oFb"/>
@@ -182,8 +182,8 @@
                         <viewLayoutGuide key="safeArea" id="Ei5-va-Rol"/>
                     </view>
                     <connections>
-                        <segue destination="xcv-q0-ts4" kind="presentation" identifier="goComment" modalTransitionStyle="coverVertical" id="xgo-cu-dnd"/>
-                        <segue destination="f4r-jX-5rw" kind="presentation" identifier="goAdd" animates="NO" modalTransitionStyle="coverVertical" id="vJB-rK-4d3"/>
+                        <segue destination="xcv-q0-ts4" kind="presentation" identifier="goComment" animates="NO" modalTransitionStyle="coverVertical" id="xgo-cu-dnd"/>
+                        <segue destination="f4r-jX-5rw" kind="presentation" identifier="goAdd" modalTransitionStyle="coverVertical" id="vJB-rK-4d3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVU-B7-T1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,16 +233,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vIg-8g-bNL"/>
                     </view>
-                    <connections>
-                        <segue destination="xcv-q0-ts4" kind="show" identifier="goComment" id="DlJ-FG-zll"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4N4-o2-Zhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2970" y="344"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="xgo-cu-dnd"/>
-    </inferredMetricsTieBreakers>
 </document>

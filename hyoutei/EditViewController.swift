@@ -26,6 +26,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     var score:Int = 5
     let judgeLabel = UILabel()
     let commentLabel = UILabel()
+    let underLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,14 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         picker.dataSource = self
         textField.delegate = self
         self.view.backgroundColor = MakeView.backgroundColor
-        button2.setTitle("戻る", for: .normal)
-        button2.frame = CGRect(x: 20, y: Int(self.height-90), width: 100, height: 90)
+        
+        underLabel.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight, width: self.width, height: MakeView.underButtonHeight)
+        underLabel.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(underLabel)
+        
+        button2.setImage(UIImage(named:"back2"), for:.normal)
+        button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button2.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
         button2.addTarget(self, action: #selector(self.goBack(sender:)), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
         button2.backgroundColor = MakeView.underButtonColor
@@ -48,7 +55,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         self.view.addSubview(addButton)
         
         textField.frame = CGRect(x: 50, y: self.height*3/10, width: self.width-100, height: self.height*2/10)
-        textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        textField.backgroundColor = UIColor.white
         textField.text = "受けた授業やコメントを記入"
         textField.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
         self.view.addSubview(textField)

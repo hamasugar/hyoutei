@@ -30,14 +30,15 @@ class LoginViewController: UIViewController {
             
             performSegue(withIdentifier: "goSchool", sender: nil)
         }
+        self.view.backgroundColor = MakeView.backgroundColor
         
         self.textField.frame = CGRect(x: self.width*4/10, y: self.height/2-100, width: self.width*5/10, height: 30)
         self.passwordField.frame = CGRect(x: self.width*4/10, y: self.height/2, width: self.width*5/10, height: 30)
         self.passwordField.isSecureTextEntry = true
         self.textField.borderStyle = UITextBorderStyle.roundedRect
         self.passwordField.borderStyle = UITextBorderStyle.roundedRect
-        self.textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
-        self.passwordField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        self.textField.backgroundColor = UIColor.white
+        self.passwordField.backgroundColor = UIColor.white
         self.view.addSubview(textField)
         self.view.addSubview(passwordField)
         
