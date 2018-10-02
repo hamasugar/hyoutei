@@ -14,7 +14,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     
     
     
-    
+    var teacher: String!
     var ref: DatabaseReference!
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
@@ -27,6 +27,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     let judgeLabel = UILabel()
     let commentLabel = UILabel()
     let underLabel = UILabel()
+    let topLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,9 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         self.view.addSubview(button2)
         
         addButton.setTitle("投稿", for: .normal)
-        addButton.frame = CGRect(x: Int(self.width/2-50), y: Int(self.height*8/10), width: 100, height: 90)
+        addButton.frame = CGRect(x: self.width*3/10, y: self.height*3/4, width: self.width*4/10, height: self.height/10)
+        addButton.layer.masksToBounds = true
+        addButton.layer.cornerRadius = MakeView.cornerRadius
         addButton.addTarget(self, action: #selector(self.add(sender:)), for: .touchUpInside)
         addButton.setTitleColor(UIColor.black, for: .normal)
         addButton.backgroundColor = MakeView.underButtonColor
@@ -67,6 +70,13 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         self.judgeLabel.frame = CGRect(x: 0, y: self.height*5/10, width: self.width, height: self.height/10)
         self.judgeLabel.textAlignment = .center
         self.view.addSubview(judgeLabel)
+        
+        topLabel.backgroundColor = MakeView.underButtonColor
+        topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
+        topLabel.text = "\(teacher!)"
+        topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
+        topLabel.textAlignment = .center
+        self.view.addSubview(topLabel)
         // Do any additional setup after loading the view.
     }
 
@@ -77,10 +87,8 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     
     
     @objc func goBack(sender:UIButton) {
-        MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: true, completion: nil)
-
-    }
+}
     
     @objc func add(sender:UIButton){
             MakeView.puyopuyo(sender:sender)
@@ -92,7 +100,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
             let key: String = formatter.string(from: timeDate as Date)
         
         if textField.text!.count == 0{
-            let alert = UIAlertController(title: "空白があります", message: "教授名とテキストを入力してください", preferredStyle: .alert)
+            let alert = UIAlertController(title: "空白があります", message: "テキストを入力してください", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true, completion: nil)
             return
@@ -132,6 +140,13 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
             self.ref.child("\(StringNumber)time").setValue(Int(NSDate().timeIntervalSince1970))
             let scoreNow: Int = dictionary["score"]! as! Int
             self.ref.child("score").setValue(scoreNow+self.score)
+                
+            let alert = UIAlertController(title: "投稿が完了しました", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "閉じる", style: .default))
+                self.present(alert, animated: true, completion: {
+                    
+                    self.textField.text = ""
+                })
                 
         })
         

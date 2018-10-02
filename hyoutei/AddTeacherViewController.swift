@@ -15,6 +15,8 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
     
     
     var ref: DatabaseReference!
+    var school: String!
+    var subject: String!
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
     let button2 = UIButton()
@@ -26,7 +28,8 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
     var textField2 = UITextField()
     let judgeLabel = UILabel()
     let commentLabel = UILabel()
-    var underLabel = UILabel()
+    var underLabel = UILabel() // 戻るボタンのみ実装する
+    var topLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +51,21 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         button2.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button2)
         
+        topLabel.backgroundColor = MakeView.underButtonColor
+        topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
+        topLabel.text = "\(school!) \(subject!)"
+        topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
+        topLabel.textAlignment = .center
+        self.view.addSubview(topLabel)
         
         
         addButton.setTitle("投稿", for: .normal)
-        addButton.frame = CGRect(x: Int(self.width/2-50), y: Int(self.height*8/10), width: 100, height: 90)
+        addButton.frame = CGRect(x: self.width*3/10, y: self.height*3/4, width: self.width*4/10, height: self.height/10)
         addButton.addTarget(self, action: #selector(self.add(sender:)), for: .touchUpInside)
         addButton.setTitleColor(UIColor.black, for: .normal)
         addButton.backgroundColor = MakeView.underButtonColor
+        addButton.layer.masksToBounds = true
+        addButton.layer.cornerRadius = MakeView.cornerRadius
         self.view.addSubview(addButton)
         
         textField2.frame =  CGRect(x: 50, y: self.height*2/10, width: self.width-100, height: 50)
@@ -136,7 +147,14 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
             self.ref.child("\(self.textField2.text!)/1time").setValue(Int(NSDate().timeIntervalSince1970))
             self.ref.child("\(self.textField2.text!)/score").setValue(self.score)
             self.ref.child("\(self.textField2.text!)/name").setValue(self.textField2.text!)
-            
+        
+            let alert = UIAlertController(title: "投稿が完了しました", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "閉じる", style: .default))
+            self.present(alert, animated: true, completion: {
+                
+                self.textField.text = ""
+                self.textField2.text = "" //テキストを空にして連続の投稿を防ぐ
+            })
        
         
     }

@@ -185,6 +185,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC: EditViewController = segue.destination as! EditViewController
         nextVC.ref = self.subjectref
+        nextVC.teacher = self.teacher
     }
     
     @objc func allSentence(sender:UIButton){

@@ -135,6 +135,8 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         if segue.identifier == "goAdd"{
                 let nextVC: AddTeacherViewController = segue.destination as! AddTeacherViewController
                 nextVC.ref = Database.database().reference().child("college/\(school!)/\(subject!)")
+                nextVC.school = self.school!
+                nextVC.subject = self.subject!
             
         }
         }

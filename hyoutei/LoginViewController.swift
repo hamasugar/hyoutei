@@ -26,14 +26,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        if let id = UserDefaults.standard.object(forKey: "ID"){
-            
-            performSegue(withIdentifier: "goSchool", sender: nil)
-        }
+        
+        
         self.view.backgroundColor = MakeView.backgroundColor
         
-        self.textField.frame = CGRect(x: self.width*4/10, y: self.height/2-100, width: self.width*5/10, height: 30)
-        self.passwordField.frame = CGRect(x: self.width*4/10, y: self.height/2, width: self.width*5/10, height: 30)
+        self.textField.frame = CGRect(x: self.width*4/10, y: self.height/2-100, width: self.width*5/10, height:  40)
+        self.passwordField.frame = CGRect(x: self.width*4/10, y: self.height/2, width: self.width*5/10, height: 40)
         self.passwordField.isSecureTextEntry = true
         self.textField.borderStyle = UITextBorderStyle.roundedRect
         self.passwordField.borderStyle = UITextBorderStyle.roundedRect
@@ -42,8 +40,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(textField)
         self.view.addSubview(passwordField)
         
-        self.idLabel.frame = CGRect(x: self.width/10, y: self.height/2-100, width: self.width*3/10, height: 50)
-        self.passwordLabel.frame = CGRect(x: self.width/10, y: self.height/2, width: self.width*3/10, height: 50)
+        self.idLabel.frame = CGRect(x: self.width/10, y: self.height/2-100, width: self.width*3/10, height: 40)
+        self.passwordLabel.frame = CGRect(x: self.width/10, y: self.height/2, width: self.width*3/10, height: 40)
         
         
         self.idLabel.text = "ID"
@@ -55,8 +53,8 @@ class LoginViewController: UIViewController {
         
         
         
-        self.createButton.frame = CGRect(x: self.width/10, y: self.height/2+100, width: self.width*3/10, height: self.width*3/10)
-        self.loginButton.frame = CGRect(x: self.width*6/10, y: self.height/2+100, width: self.width*3/10, height: self.width*3/10)
+        self.createButton.frame = CGRect(x: self.width/10, y: self.height*6/10, width: self.width*8/10, height: self.height/10)
+        self.loginButton.frame = CGRect(x: self.width/10, y: self.height*7/10+20, width: self.width*8/10, height: self.height/10)
         self.createButton.setTitle("会員登録", for: .normal)
         self.loginButton.setTitle("ログイン", for: .normal)
         self.createButton.setTitleColor(UIColor.black, for: .normal)
@@ -65,6 +63,10 @@ class LoginViewController: UIViewController {
         self.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         self.createButton.backgroundColor = MakeView.underButtonColor
         self.loginButton.backgroundColor = MakeView.underButtonColor
+        self.createButton.layer.masksToBounds = true
+        self.loginButton.layer.masksToBounds = true
+        self.createButton.layer.cornerRadius = MakeView.cornerRadius
+        self.loginButton.layer.cornerRadius = MakeView.cornerRadius
         self.view.addSubview(loginButton)
         self.view.addSubview(createButton)
 
@@ -75,9 +77,17 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let id = UserDefaults.standard.object(forKey: "ID"){
+            print ("ssss") //こっちはさ動いているので保存はされている模様
+            performSegue(withIdentifier: "goSchool", sender: nil) // なぜか遷移しない
+            // viewDidLoad内の画面遷移は反応しないのでこっちでやる必要あり
+        }
+
+    }
+
     
-    // 会員登録のボタンであります
-    
+    // 会員登録のボタンです
     @objc func create(){
         MakeView.puyopuyo(sender:createButton)
         if !self.countjudge(){
@@ -107,9 +117,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(self.textField.text!, forKey: "ID")
                 
                 self.performSegue(withIdentifier: "goSchool", sender: nil)
-                self.makeGoodAlert(message: "会員登録が完了しました")
-                
-                
+            
                 
             }
             
@@ -198,5 +206,6 @@ class LoginViewController: UIViewController {
         self.textField.endEditing(true)
         self.passwordField.endEditing(true)
     }
+    
 
 }
