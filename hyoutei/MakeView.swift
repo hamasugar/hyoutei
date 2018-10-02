@@ -21,7 +21,7 @@ class MakeView{
     static let fontsize = UIFont.systemFont(ofSize: 22.0)
     static let cornerRadius = CGFloat(10.0)
     static let underButtonColor = UIColor(red: 255.0/256, green: 169.0/256, blue: 146.0/256, alpha: 1.0)
-    static let underButtonHeight = 80
+    static let underButtonHeight = 50
     
     static func puyopuyo(sender:UIButton){
         

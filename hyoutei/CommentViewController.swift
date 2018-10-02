@@ -22,6 +22,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     var teacherLabel = UILabel()
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
+    let underLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,10 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         teacherLabel.backgroundColor = MakeView.underButtonColor
         teacherLabel.textAlignment = .center
         self.view.addSubview(teacherLabel)
+        
+        underLabel.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight, width: self.width, height: MakeView.underButtonHeight)
+        underLabel.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(underLabel)
         
         
         subjectref = Database.database().reference().child("/college/\(school!)/\(subject!)/\(teacher!)")
@@ -132,7 +137,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     }
     @objc func goback(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     @objc func goEdit() {
         UserDefaults.standard.set("commentOnly", forKey: "edit")
@@ -147,24 +152,29 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     func makeUnderButton(){
         
         let button = UIButton()
-        button.setTitle("←", for: .normal)
-        button.frame = CGRect(x: 0, y: Int(self.height)-MakeView.underButtonHeight, width: width/3-10, height: MakeView.underButtonHeight)
+//        button.setTitle("←", for: .normal)
+        button.setImage(UIImage(named:"back2"), for:.normal)
+        button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
         button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button)
         
         let button2 = UIButton()
-        button2.setTitle("+", for: .normal)
-        button2.frame = CGRect(x: width/3, y: Int(self.height)-MakeView.underButtonHeight, width: width/3, height: MakeView.underButtonHeight)
+        
+        button2.setImage(UIImage(named: "add"), for: .normal)
+        button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button2.frame = CGRect(x: self.width/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
         button2.addTarget(self, action: #selector(self.goEdit), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
         button2.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(button2)
         
         let button3 = UIButton()
-        button3.setTitle("🔁", for: .normal)
-        button3.frame = CGRect(x: width*2/3+10, y: Int(self.height)-MakeView.underButtonHeight, width: width/3-10, height: MakeView.underButtonHeight)
+        button3.setImage(UIImage(named: "reload"), for: .normal)
+        button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button3.frame = CGRect(x: self.width*2/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
         button3.addTarget(self, action: #selector(self.reload), for: .touchUpInside)
         button3.setTitleColor(UIColor.black, for: .normal)
         button3.backgroundColor = MakeView.underButtonColor
@@ -175,6 +185,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC: EditViewController = segue.destination as! EditViewController
         nextVC.ref = self.subjectref
+        nextVC.teacher = self.teacher
     }
     
     @objc func allSentence(sender:UIButton){
@@ -183,7 +194,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         let allSentence = self.teatures[numberOfButton]
         let alert = UIAlertController(title: "全文", message: allSentence, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: false, completion: nil)
         
         
     }
