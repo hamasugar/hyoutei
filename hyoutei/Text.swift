@@ -12,8 +12,8 @@ enum text: String {
     
     case userCreate = "会員登録"
     case login = "ログイン"
-    case identifier = "ID"
-    case password = "password"
+    case identifier = "ユーザー名"
+    case password = "パスワード"
     case countJadge = "IDとパスワードは半角英数字５文字以上２０文字以内に設定してください"
     case noUser = "ユーザーが存在しません"
     case difPassword = "パスワードが違います"

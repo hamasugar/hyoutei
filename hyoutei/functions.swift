@@ -14,18 +14,72 @@ func fetchString(ref: DatabaseReference) -> String {
     
     var returnValue: String!
     
-    ref.observeSingleEvent(of: .value, with: {(snapshot) in
+    DispatchQueue.main.async {
         
-        if let value = snapshot.value as? String{
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
             
-            returnValue = value
-        }
-        else {
-            returnValue = ""
-        }
+            if let value = snapshot.value as? String{
+                
+                returnValue = value
+            }
+            else {
+                returnValue = ""
+            }
+            
+        })
+    }
+    
+   
+        return returnValue
+    
+}
+
+
+//func fetchString2(ref: DatabaseReference, _ after:@escaping (String) -> String) {
+//
+//    var returnValue: String!
+//
+//    DispatchQueue.main.async {
+//
+//        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+//
+//            if let value = snapshot.value as? String{
+//
+//                returnValue = value
+//            }
+//            else {
+//                returnValue = ""
+//            }
+//
+//        })
+//        after(returnValue)
+//    }
+//
+//}
+
+
+func fetchString3(ref: DatabaseReference, completion: @escaping (_ response: String) -> Void) {
+    
+    DispatchQueue.main.async {
+        var returnValue: String!
         
-    })
-    return returnValue//ここがnilになるのはスレッドの話かもしれない
+        
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            if let value = snapshot.value as? String{
+                print ("yes")
+                returnValue = value
+                completion(returnValue)
+            }
+            else {
+                print ("no")
+                returnValue = ""
+                completion(returnValue)
+            }
+            
+        })
+    }
+    
 }
 
 //文字列を入れるとハッシュかしたものを返してくれる関数

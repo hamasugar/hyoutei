@@ -97,17 +97,25 @@ class LoginViewController: UIViewController {
         }
         let privateref = Database.database().reference().child("login/\(self.idtextField.text!)")
         
-        let password: String = fetchString(ref: privateref)
+        var password: String!
         
-        if password != "" {
-            self.makeBadAlert(message: text.doubleUser.rawValue)
-        }
-        else {
-            let loginref = Database.database().reference().child("login")
-            let hashedString = hyoutei.hash(original: self.passwordField.text!)
-            loginref.child("\(self.idtextField.text!)").setValue(hashedString)
-            UserDefaults.standard.set(self.idtextField.text!, forKey: "ID")
-            self.performSegue(withIdentifier: "goSchool", sender: nil)
+        fetchString3(ref: privateref){(response) in
+            
+            password = response
+            
+            if password != "" {
+                print (password)
+                self.makeBadAlert(message: text.doubleUser.rawValue)
+            }
+            else {
+                print (password)
+                let loginref = Database.database().reference().child("login")
+                let hashedString = hyoutei.hash(original: self.passwordField.text!)
+                loginref.child("\(self.idtextField.text!)").setValue(hashedString)
+                UserDefaults.standard.set(self.idtextField.text!, forKey: "ID")
+                self.performSegue(withIdentifier: "goSchool", sender: nil)
+            }
+            
         }
     }
     
