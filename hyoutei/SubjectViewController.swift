@@ -76,7 +76,7 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
 //        button.setTitle("戻る", for: .normal)
         button.setImage(UIImage(named:"back2"), for:.normal)
         button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
+        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
         button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor

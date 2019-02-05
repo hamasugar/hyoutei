@@ -45,7 +45,7 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         
         button2.setImage(UIImage(named:"back2"), for:.normal)
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button2.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
+        button2.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
         button2.addTarget(self, action: #selector(self.goBack(sender:)), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
         button2.backgroundColor = MakeView.underButtonColor

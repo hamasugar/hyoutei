@@ -77,7 +77,7 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
 //        button.setTitle("戻る", for: .normal)
         button.setImage(UIImage(named:"back2"), for:.normal)
         button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
+        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
         button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
@@ -86,7 +86,7 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         let addbutton = UIButton()
         addbutton.setImage(UIImage(named: "add"), for: .normal)
         addbutton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        addbutton.frame = CGRect(x: self.width/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
+        addbutton.frame = CGRect(x: self.width/3, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: MakeView.underButtonHeight-20)
         addbutton.addTarget(self, action: #selector(self.add), for: .touchUpInside)
         addbutton.setTitleColor(UIColor.black, for: .normal)
         addbutton.backgroundColor = MakeView.underButtonColor
@@ -95,7 +95,7 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         let reloadbutton = UIButton()
         reloadbutton.setImage(UIImage(named: "reload"), for: .normal)
         reloadbutton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        reloadbutton.frame = CGRect(x: self.width*2/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
+        reloadbutton.frame = CGRect(x: self.width*2/3, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: MakeView.underButtonHeight-20)
         reloadbutton.addTarget(self, action: #selector(self.reload), for: .touchUpInside)
         reloadbutton.setTitleColor(UIColor.black, for: .normal)
         reloadbutton.backgroundColor = MakeView.underButtonColor

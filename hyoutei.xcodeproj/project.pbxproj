@@ -13,12 +13,13 @@
 		CE4E88EB215BC9F000C90290 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = CE4E88EA215BC9F000C90290 /* reload */; };
 		CE516857215645E200E3CC62 /* AddTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE516856215645E200E3CC62 /* AddTeacherViewController.swift */; };
 		CE87985121327E1A004AA3A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87985021327E1A004AA3A9 /* AppDelegate.swift */; };
-		CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87985221327E1A004AA3A9 /* ViewController.swift */; };
 		CE87985621327E1A004AA3A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87985421327E1A004AA3A9 /* Main.storyboard */; };
 		CE87985821327E1F004AA3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE87985721327E1F004AA3A9 /* Assets.xcassets */; };
 		CE87985B21327E1F004AA3A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE87985921327E1F004AA3A9 /* LaunchScreen.storyboard */; };
 		CE87986321327EA8004AA3A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */; };
 		CE8B0579213E442600D48E84 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B0578213E442600D48E84 /* EditViewController.swift */; };
+		CEBA988122097CE2006C5724 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA988022097CE2006C5724 /* Text.swift */; };
+		CEBA988322098175006C5724 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA988222098175006C5724 /* functions.swift */; };
 		CEDF4C2A2136D9F300487EC1 /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C292136D9F300487EC1 /* TeachersViewController.swift */; };
 		CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */; };
 		CEDF4C312138296D00487EC1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDF4C302138296C00487EC1 /* LoginViewController.swift */; };
@@ -37,13 +38,14 @@
 		CE516856215645E200E3CC62 /* AddTeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeacherViewController.swift; sourceTree = "<group>"; };
 		CE87984D21327E1A004AA3A9 /* hyoutei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hyoutei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87985021327E1A004AA3A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE87985221327E1A004AA3A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE87985521327E1A004AA3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE87985721327E1F004AA3A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE87985A21327E1F004AA3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE87985C21327E1F004AA3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE87986221327EA8004AA3A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE8B0578213E442600D48E84 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		CEBA988022097CE2006C5724 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		CEBA988222098175006C5724 /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		CEDF4C292136D9F300487EC1 /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
 		CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		CEDF4C2D213826A900487EC1 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -106,8 +108,8 @@
 			children = (
 				CE87985021327E1A004AA3A9 /* AppDelegate.swift */,
 				CE87985421327E1A004AA3A9 /* Main.storyboard */,
-				CE87985221327E1A004AA3A9 /* ViewController.swift */,
 				CEDF4C302138296C00487EC1 /* LoginViewController.swift */,
+				CEBA988222098175006C5724 /* functions.swift */,
 				CEDF4C32213A70EC00487EC1 /* SchoolViewController.swift */,
 				CEDF4C34213A83F700487EC1 /* SubjectViewController.swift */,
 				CEE5623A2150F12600C30D3C /* MakeView.swift */,
@@ -115,6 +117,7 @@
 				CE516856215645E200E3CC62 /* AddTeacherViewController.swift */,
 				CEDF4C2B2136E83B00487EC1 /* CommentViewController.swift */,
 				CE8B0578213E442600D48E84 /* EditViewController.swift */,
+				CEBA988022097CE2006C5724 /* Text.swift */,
 				CE87985721327E1F004AA3A9 /* Assets.xcassets */,
 				CE4E88EA215BC9F000C90290 /* reload */,
 				CE4E88E6215BC24400C90290 /* back2 */,
@@ -265,12 +268,13 @@
 				CEE5623B2150F12600C30D3C /* MakeView.swift in Sources */,
 				CE516857215645E200E3CC62 /* AddTeacherViewController.swift in Sources */,
 				CEDF4C33213A70EC00487EC1 /* SchoolViewController.swift in Sources */,
-				CE87985321327E1A004AA3A9 /* ViewController.swift in Sources */,
 				CEDF4C35213A83F700487EC1 /* SubjectViewController.swift in Sources */,
 				CE8B0579213E442600D48E84 /* EditViewController.swift in Sources */,
 				CEDF4C2C2136E83B00487EC1 /* CommentViewController.swift in Sources */,
 				CEDF4C312138296D00487EC1 /* LoginViewController.swift in Sources */,
+				CEBA988322098175006C5724 /* functions.swift in Sources */,
 				CEDF4C2A2136D9F300487EC1 /* TeachersViewController.swift in Sources */,
+				CEBA988122097CE2006C5724 /* Text.swift in Sources */,
 				CE87985121327E1A004AA3A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,16 +423,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR34XK582H;
 				INFOPLIST_FILE = hyoutei/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hamasugar0511.hyoutei;
+				PRODUCT_BUNDLE_IDENTIFIER = hamasugar0511.pronavi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT)/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -440,16 +444,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR34XK582H;
 				INFOPLIST_FILE = hyoutei/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hamasugar0511.hyoutei;
+				PRODUCT_BUNDLE_IDENTIFIER = hamasugar0511.pronavi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT)/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -45,8 +45,8 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             self.makeButton()
         })
         
-        if (UserDefaults.standard.object(forKey: "start") as? Int)! <= 10{
-        SKStoreReviewController.requestReview()
+        if (UserDefaults.standard.object(forKey: "start") as? Int)! == 10, #available(iOS 10.3, *) {
+        SKStoreReviewController.requestReview()//ios10.3以降でないと正しく動作しない
         }
         // Do any additional setup after loading the view.
     }

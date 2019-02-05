@@ -102,7 +102,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
                 buttonLabel2.backgroundColor = UIColor.white
                 buttonLabel2.textColor = UIColor.black
                 buttonLabel2.frame = CGRect(x: buttonWidth*3/4, y: 0, width:buttonWidth/4-10 , height: MakeView.buttonHeight)
-                buttonLabel2.font = UIFont.systemFont(ofSize: 11.0)
+                buttonLabel2.font = UIFont.systemFont(ofSize: 10.0)
                 buttonLabel2.text = "\(dateStr)"
                 buttonLabel2.textAlignment = .right
                 button.addSubview(buttonLabel2)
@@ -155,7 +155,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
 //        button.setTitle("←", for: .normal)
         button.setImage(UIImage(named:"back2"), for:.normal)
         button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: Int(MakeView.underButtonHeight)-10)
+        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
         button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = MakeView.underButtonColor
@@ -165,7 +165,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         
         button2.setImage(UIImage(named: "add"), for: .normal)
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button2.frame = CGRect(x: self.width/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
+        button2.frame = CGRect(x: self.width/3, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: MakeView.underButtonHeight-20)
         button2.addTarget(self, action: #selector(self.goEdit), for: .touchUpInside)
         button2.setTitleColor(UIColor.black, for: .normal)
         button2.backgroundColor = MakeView.underButtonColor
@@ -174,7 +174,7 @@ class CommentViewController: UIViewController ,UIScrollViewDelegate {
         let button3 = UIButton()
         button3.setImage(UIImage(named: "reload"), for: .normal)
         button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button3.frame = CGRect(x: self.width*2/3, y: self.height-MakeView.underButtonHeight+5, width: self.width/3, height: MakeView.underButtonHeight-10)
+        button3.frame = CGRect(x: self.width*2/3, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: MakeView.underButtonHeight-20)
         button3.addTarget(self, action: #selector(self.reload), for: .touchUpInside)
         button3.setTitleColor(UIColor.black, for: .normal)
         button3.backgroundColor = MakeView.underButtonColor

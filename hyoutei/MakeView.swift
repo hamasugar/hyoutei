@@ -23,6 +23,9 @@ class MakeView{
     static let underButtonColor = UIColor(red: 255.0/256, green: 169.0/256, blue: 146.0/256, alpha: 1.0)
     static let underButtonHeight = 50
     
+    static let textColor = UIColor.black
+    static let textFieldColor = UIColor.white
+    //ボタンをプヨプヨさせるメソッド
     static func puyopuyo(sender:UIButton){
         
         UIView.animate(withDuration: 0.1,
