@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-
+import StoreKit
 
 func fetchString(ref: DatabaseReference) -> String {
     
@@ -35,30 +35,8 @@ func fetchString(ref: DatabaseReference) -> String {
 }
 
 
-//func fetchString2(ref: DatabaseReference, _ after:@escaping (String) -> String) {
-//
-//    var returnValue: String!
-//
-//    DispatchQueue.main.async {
-//
-//        ref.observeSingleEvent(of: .value, with: {(snapshot) in
-//
-//            if let value = snapshot.value as? String{
-//
-//                returnValue = value
-//            }
-//            else {
-//                returnValue = ""
-//            }
-//
-//        })
-//        after(returnValue)
-//    }
-//
-//}
 
-
-func fetchString3(ref: DatabaseReference, completion: @escaping (_ response: String) -> Void) {
+func fetchString(ref: DatabaseReference, completion: @escaping (_ response: String) -> Void) {
     
     DispatchQueue.main.async {
         var returnValue: String!
@@ -82,6 +60,33 @@ func fetchString3(ref: DatabaseReference, completion: @escaping (_ response: Str
     
 }
 
+func fetchArray(ref: DatabaseReference, completion: @escaping (_ response: Array<String>) -> Void) {
+    
+    DispatchQueue.main.async {
+        var returnValue = [String]()
+        
+        
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            if let value = snapshot.value as! NSDictionary?{
+                print ("yes")
+                for (key,_) in value {
+                    returnValue.append(key as! String)
+                }
+                
+                completion(returnValue)
+            }
+            else {
+                print ("no")
+                returnValue = ["エラーです"]
+                completion(returnValue)
+            }
+            
+        })
+    }
+    
+}
+
 //文字列を入れるとハッシュかしたものを返してくれる関数
 func hash(original: String) -> String {
     
@@ -92,4 +97,10 @@ func hash(original: String) -> String {
     let hashedString = digest.map { String(format: "%02x", $0) }.joined(separator: "")
     
     return hashedString
+}
+
+func requestReview() {
+    if (UserDefaults.standard.object(forKey: "start") as? Int)! == 10, #available(iOS 10.3, *) {
+        SKStoreReviewController.requestReview()//ios10.3以降でないと正しく動作しない
+    }
 }

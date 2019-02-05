@@ -25,6 +25,7 @@ class MakeView{
     
     static let textColor = UIColor.black
     static let textFieldColor = UIColor.white
+    static let contentHeight = 2000
     //ボタンをプヨプヨさせるメソッド
     static func puyopuyo(sender:UIButton){
         

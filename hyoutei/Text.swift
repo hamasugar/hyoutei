@@ -18,5 +18,6 @@ enum text: String {
     case noUser = "ユーザーが存在しません"
     case difPassword = "パスワードが違います"
     case doubleUser = "このIDはすでに使われています"
+    case schoolTopLabel = "大学名を選択"
 }
 

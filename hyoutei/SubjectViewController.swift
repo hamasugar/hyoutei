@@ -12,53 +12,53 @@ import Firebase
 class SubjectViewController: UIViewController, UIScrollViewDelegate {
     var subjects = [String]()
 
-    var school: String!
-    var subject: String! //次の画面に表示するための学校を定義す
+    var school: String! //from&toOtherVC
+    var subject: String! //toNextVC
+    
     let scrollView = UIScrollView()
-    var numberOfDictionary: Int!
-    var width:Int{return Int(self.view.frame.size.width)}
-    var height:Int{return Int(self.view.frame.size.height)}
     let topLabel = UILabel()
     let underLabel = UILabel()
-
+    let backButton = UIButton()
+    
+    var width:Int{return Int(self.view.frame.size.width)}
+    var height:Int{return Int(self.view.frame.size.height)}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidLayoutSubviews() {
         makeScrollView()
         
         topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
-        topLabel.text = "\(school!)"
         topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
         topLabel.backgroundColor = MakeView.underButtonColor
         topLabel.textAlignment = .center
         self.view.addSubview(topLabel)
+        if let school = school {
+            topLabel.text = "\(school)"
+        }
         
         underLabel.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight, width: self.width, height: MakeView.underButtonHeight)
         underLabel.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(underLabel)
         
         let ref = Database.database().reference().child("/college/\(school!)")
-        ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            var dictionary: NSDictionary!
-            dictionary = snapshot.value as? NSDictionary
-            for (key, _) in dictionary {
-                self.subjects.append((key as? String)!)
-            }
-            //ボタンを作るための処理をクロージャーの中に入れておかないとスレッドが複数生成されてnumberOfDictionaryが最初の値を参照してしまう
+        fetchArray(ref: ref){(response) in
+            self.subjects = response
             self.makeButton()
-        })
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        }
     }
     func makeButton() {
         var i=0
-        while i<self.subjects.count {
+        let count = self.subjects.count
+        while i < count {
             let button = UIButton()
             let title = self.subjects[i]
-            print (title)
             button.setTitle(title, for: .normal)
             button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i+1)+15, width: self.width-20, height: MakeView.buttonHeight)
             button.addTarget(self, action: #selector(self.onClick(sender:)), for: .touchUpInside)
@@ -71,16 +71,12 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
         }
         self.scrollView.contentSize =  CGSize(width: self.width, height: MakeView.buttonSpace*(i+2))
         
-        
-        let button = UIButton()
-//        button.setTitle("戻る", for: .normal)
-        button.setImage(UIImage(named:"back2"), for:.normal)
-        button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
-        button.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = MakeView.underButtonColor
-        self.view.addSubview(button)
+        backButton.setImage(UIImage(named:"back2"), for:.normal)
+        backButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        backButton.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
+        backButton.addTarget(self, action: #selector(self.goback(sender:)), for: .touchUpInside)
+        backButton.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(backButton)
     }
 
     @objc func onClick(sender: UIButton) {
@@ -96,19 +92,20 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = MakeView.backgroundColor
         scrollView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
         scrollView.center = self.view.center
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 2000) //ここが全体の大きさなのかあ
+        scrollView.contentSize = CGSize(width: self.width, height: MakeView.contentHeight) //ここが全体の大きさなのかあ
         scrollView.bounces = false
         scrollView.indicatorStyle = .default
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         scrollView.delegate = self
         self.view.addSubview(scrollView)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         let nextVC:TeachersViewController = segue.destination as! TeachersViewController
         nextVC.school = school!
         nextVC.subject = subject!
     }
+    
     @objc func goback(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: false, completion: nil)

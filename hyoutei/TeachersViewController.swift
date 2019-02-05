@@ -12,11 +12,10 @@ import Firebase
 class TeachersViewController: UIViewController, UIScrollViewDelegate {
 
     var teachers = [String]()
-    var subject: String!
-    var school: String!
-    var teacher: String! //次の画面に表示するための教授を定義する
+    var subject: String!//from&to
+    var school: String!//from&to
+    var teacher: String! //tonextVC
     let scrollView = UIScrollView()
-    var numberOfDictionary: Int!
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
     let topLabel = UILabel()
@@ -24,6 +23,12 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidLayoutSubviews() {
         makeScrollView()
         
         topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
@@ -37,30 +42,20 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         underLabel.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(underLabel)
         
-        teachers = [String]()
+        self.teachers = [String]()//空にしておかないと戻ってきたときに困る
         let ref = Database.database().reference().child("/college/\(school!)/\(subject!)")
-        ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            var dictionary: NSDictionary!
-            dictionary = snapshot.value as! NSDictionary
-            for (key, _) in dictionary {
-                self.teachers.append(key as! String)
-            }
-            //ボタンを作るための処理をクロージャーの中に入れておかないとスレッドが複数生成されてnumberOfDictionaryが最初の値を参照してしまう
-    self.makeButton()
-        })
-        // Do any additional setup after loading the view.
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        fetchArray(ref: ref){(response) in
+            self.teachers = response
+            self.makeButton()
+        }
     }
 
     func makeButton() {
         var i=0
-        while i<self.teachers.count {
+        let count = self.teachers.count
+        while i < count {
             let button = UIButton()
             let title = self.teachers[i]
-            print (title)
             button.setTitle(title, for: .normal)
             button.frame = CGRect(x: 10, y: MakeView.buttonSpace*(i+1)+15, width: self.width-20, height: MakeView.buttonHeight)
             button.addTarget(self, action: #selector(self.onClick(sender:)), for: .touchUpInside)
@@ -74,7 +69,6 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.contentSize =  CGSize(width: self.width, height: MakeView.buttonSpace*(i+2))
         
         let button = UIButton()
-//        button.setTitle("戻る", for: .normal)
         button.setImage(UIImage(named:"back2"), for:.normal)
         button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
@@ -146,7 +140,6 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func add(){
-        
         performSegue(withIdentifier: "goAdd", sender: nil)
     }
     

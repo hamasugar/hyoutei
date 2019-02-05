@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
         
         var password: String!
         
-        fetchString3(ref: privateref){(response) in
+        fetchString(ref: privateref){(response) in
             
             password = response
             
@@ -127,21 +127,24 @@ class LoginViewController: UIViewController {
         
         let privateref = Database.database().reference().child("login/\(self.idtextField.text!)")
         
-        let correctPassword: String = fetchString(ref: privateref)
-        
-        if correctPassword == "" {
-            self.makeBadAlert(message: text.noUser.rawValue)
-            return
-        }
-        
+        var correctPassword: String!
         let hashedString = hyoutei.hash(original: self.passwordField.text!)
+        
+        fetchString(ref: privateref){(response) in
+            correctPassword = response
+            //以下の処理をクロージャー内に書いておかないと違うスレッドで実行されてしまう
+            if correctPassword == "" {
+                
+                self.makeBadAlert(message: text.noUser.rawValue)
+            }
+            else if  correctPassword == hashedString {
+                UserDefaults.standard.set(self.idtextField.text!, forKey: "ID")
+                self.performSegue(withIdentifier: "goSchool", sender: nil)
+            }
+            else {
+                self.makeBadAlert(message: text.difPassword.rawValue)
+            }
             
-        if hashedString == correctPassword {
-            UserDefaults.standard.set(self.idtextField.text!, forKey: "ID")
-            self.performSegue(withIdentifier: "goSchool", sender: nil)
-        }
-        else {
-            self.makeBadAlert(message: text.difPassword.rawValue)
         }
     
     }
