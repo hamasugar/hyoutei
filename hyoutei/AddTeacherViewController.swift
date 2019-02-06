@@ -11,23 +11,23 @@ import Firebase
 
 class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate {
     
-    
-    
-    
     var ref: DatabaseReference!
-    var school: String!
-    var subject: String!
+    var school: String! //fromBreforeVC
+    var subject: String! //fromBreforeVC
     var width:Int{return Int(self.view.frame.size.width)}
     var height:Int{return Int(self.view.frame.size.height)}
-    let button2 = UIButton()
+    
+    let backButton = UIButton()
     let addButton = UIButton()
+    let nameTextField = UITextField()
     let textField = UITextView()
-    let picker = UIPickerView()
-    let scoreArray = [0,1,2,3,4,5,6,7,8,9,10]
-    var score:Int = 5
-    var textField2 = UITextField()
+    
     let judgeLabel = UILabel()
     let commentLabel = UILabel()
+    
+    let picker = UIPickerView()
+    let scoreArray = [0,1,2,3,4,5,6,7,8,9,10]
+    var score: Int!
     var underLabel = UILabel() // 戻るボタンのみ実装する
     var topLabel = UILabel()
     
@@ -38,52 +38,52 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         textField.delegate = self
         self.view.backgroundColor = MakeView.backgroundColor
         
+        self.score = scoreArray.last!/2
+        
+        topLabel.backgroundColor = MakeView.underButtonColor
+        topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
+        topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
+        topLabel.textAlignment = .center
+        self.view.addSubview(topLabel)
+        if let school = school,let subject = subject {
+            topLabel.text = "\(school) \(subject)"
+        }
         
         underLabel.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight, width: self.width, height: MakeView.underButtonHeight)
         underLabel.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(underLabel)
         
-        button2.setImage(UIImage(named:"back2"), for:.normal)
-        button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button2.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
-        button2.addTarget(self, action: #selector(self.goBack(sender:)), for: .touchUpInside)
-        button2.setTitleColor(UIColor.black, for: .normal)
-        button2.backgroundColor = MakeView.underButtonColor
-        self.view.addSubview(button2)
+        backButton.setImage(UIImage(named:"back2"), for:.normal)
+        backButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        backButton.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight+10, width: self.width/3, height: Int(MakeView.underButtonHeight)-20)
+        backButton.addTarget(self, action: #selector(self.goBack(sender:)), for: .touchUpInside)
+        backButton.backgroundColor = MakeView.underButtonColor
+        self.view.addSubview(backButton)
         
-        topLabel.backgroundColor = MakeView.underButtonColor
-        topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
-        topLabel.text = "\(school!) \(subject!)"
-        topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
-        topLabel.textAlignment = .center
-        self.view.addSubview(topLabel)
-        
-        
-        addButton.setTitle("投稿", for: .normal)
+        addButton.setTitle(text.post.rawValue, for: .normal)
         addButton.frame = CGRect(x: self.width*3/10, y: self.height*3/4, width: self.width*4/10, height: self.height/10)
         addButton.addTarget(self, action: #selector(self.add(sender:)), for: .touchUpInside)
-        addButton.setTitleColor(UIColor.black, for: .normal)
         addButton.backgroundColor = MakeView.underButtonColor
         addButton.layer.masksToBounds = true
         addButton.layer.cornerRadius = MakeView.cornerRadius
         self.view.addSubview(addButton)
         
-        textField2.frame =  CGRect(x: 50, y: self.height*2/10, width: self.width-100, height: 50)
-        textField2.backgroundColor = UIColor.white
-        textField2.placeholder = "教授の名前を記入"
-        self.view.addSubview(textField2)
+        nameTextField.frame =  CGRect(x: 50, y: self.height*2/10, width: self.width-100, height: 50)
+        nameTextField.backgroundColor = UIColor.white
+        nameTextField.placeholder = text.collegePlaceHolder.rawValue
+        self.view.addSubview(nameTextField)
         
         
         textField.frame = CGRect(x: 50, y: self.height*3/10, width: self.width-100, height: self.height*2/10)
         textField.backgroundColor = UIColor.white
-        textField.text = "受けた授業やコメントを記入"
+        textField.text = text.placeHolder.rawValue
         textField.textColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
         self.view.addSubview(textField)
         
         self.picker.frame = CGRect(x: self.width/2-50, y: self.height*6/10, width: 100, height: 100)
         self.view.addSubview(picker)
         
-        self.judgeLabel.text = "教授を１０点満点で評価してください"
+        self.judgeLabel.text = text.evaluate.rawValue
         self.judgeLabel.frame = CGRect(x: 0, y: self.height*5/10, width: self.width, height: self.height/10)
         self.judgeLabel.textAlignment = .center
         self.view.addSubview(judgeLabel)
@@ -102,20 +102,16 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         
     }
     
-    @objc func add(sender:UIButton){
+    @objc func add(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
         
-        if textField2.text!.count == 0 || textField.text!.count == 0{
-            let alert = UIAlertController(title: "空白があります", message: "教授名とテキストを入力してください", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
+        if nameTextField.text!.count == 0 || textField.text!.count == 0{
+            makeAlert(title: text.margin.rawValue, message: text.marginMessage.rawValue, actionTitle: "OK")
             return
         }
         
-        if textField2.text!.count > 300 || textField.text!.count > 300{
-            let alert = UIAlertController(title: "文字数制限オーバー", message: "300文字以内で入力してください", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
+        if nameTextField.text!.count > 300 || textField.text!.count > 300{
+            makeAlert(title: text.limitOver.rawValue, message: text.limitOverMessage.rawValue, actionTitle: "OK")
             return
         }
         
@@ -127,39 +123,44 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
         if let count:Int = UserDefaults.standard.object(forKey: key) as? Int{
             
             UserDefaults.standard.set(count+1, forKey: key)
-            print (key)
             
             if count >= 100{
-                let alert = UIAlertController(title: "投稿数が制限を超えています", message: "投稿は１ヶ月に１００件までです", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true, completion: nil)
+                makeAlert(title: text.monthLimit.rawValue, message: text.monthLimitMessage.rawValue, actionTitle: "OK")
                 return
             }
-            
         }
         else{
             UserDefaults.standard.set(1, forKey: key)
         }
-        
-        
-            self.ref.child("\(self.textField2.text!)/number").setValue("1")
-            self.ref.child("\(self.textField2.text!)/1").setValue(self.textField.text)
-            self.ref.child("\(self.textField2.text!)/1time").setValue(Int(NSDate().timeIntervalSince1970))
-            self.ref.child("\(self.textField2.text!)/score").setValue(self.score)
-            self.ref.child("\(self.textField2.text!)/name").setValue(self.textField2.text!)
-        
-            let alert = UIAlertController(title: "投稿が完了しました", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "閉じる", style: .default))
-            self.present(alert, animated: true, completion: {
-                
-                self.textField.text = ""
-                self.textField2.text = "" //テキストを空にして連続の投稿を防ぐ
-            })
-       
-        
+        //ここでバリデーションを貼らないと面倒臭いことになる
+        if let commentText = self.textField.text,let proName = self.nameTextField.text,let school = self.school, let subject = self.subject {
+            
+            let varidateRef = Database.database().reference().child("/college/\(school)/\(subject)/\(proName)")
+            fetchArray(ref: varidateRef){(response) in
+                print (response)
+                print (varidateRef)
+                if response[0] != "" {
+                    self.makeAlert(title: text.doubleComment.rawValue, message: text.doubleCommentMessage.rawValue, actionTitle: "OK")
+                }
+                else {
+                    self.ref.child("\(proName)/number").setValue("1")
+                    self.ref.child("\(proName)/1").setValue(commentText)
+                    self.ref.child("\(proName)/1time").setValue(Int(NSDate().timeIntervalSince1970))
+                    self.ref.child("\(proName)/score").setValue(self.score)
+                    self.ref.child("\(proName)/name").setValue(proName)
+                    
+                    let alert = UIAlertController(title: text.finishPost.rawValue, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: text.close.rawValue, style: .default))
+                    self.present(alert, animated: true, completion: {
+                        
+                        self.textField.text = ""
+                        self.nameTextField.text = "" //テキストを空にして連続の投稿を防ぐ
+                    })
+                    
+                }
+            }
+        }
     }
-    
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textField.endEditing(true)
@@ -170,7 +171,7 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 11
+        return scoreArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -182,12 +183,15 @@ class AddTeacherViewController: UIViewController,UIPickerViewDelegate,UIPickerVi
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if self.textField.text == "受けた授業やコメントを記入"{
-            
+        if self.textField.text == text.placeHolder.rawValue {
             self.textField.text = ""
-            self.textField.textColor = UIColor.black
+            self.textField.textColor = MakeView.textFieldTextColor
         }
-        
+    }
+    func makeAlert(title: String, message: String, actionTitle: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

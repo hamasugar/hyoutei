@@ -25,15 +25,8 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewDidLayoutSubviews() {
         makeScrollView()
-        
+        print ("layout")
         topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
         topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
         topLabel.backgroundColor = MakeView.underButtonColor
@@ -47,12 +40,19 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
         underLabel.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(underLabel)
         
-        let ref = Database.database().reference().child("/college/\(school!)")
-        fetchArray(ref: ref){(response) in
-            self.subjects = response
-            self.makeButton()
+        if let school = school {
+            let ref = Database.database().reference().child("/college/\(school)")
+            fetchArray(ref: ref){(response) in
+                self.subjects = response
+                self.makeButton()
+            }
         }
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func makeButton() {
         var i=0
         let count = self.subjects.count
@@ -66,6 +66,7 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
             button.backgroundColor = MakeView.buttonColor
             button.layer.masksToBounds = true
             button.layer.cornerRadius = MakeView.cornerRadius
+            button.tag = i
             self.scrollView.addSubview(button)
             i+=1
         }
@@ -81,10 +82,8 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
 
     @objc func onClick(sender: UIButton) {
         MakeView.puyopuyo(sender:sender)
-        //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
-        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace-1
+        let numberOfButton = sender.tag
         subject = subjects[numberOfButton]
-        print (subject)
          performSegue(withIdentifier: "goTeacher", sender: nil)
     }
 
@@ -102,8 +101,14 @@ class SubjectViewController: UIViewController, UIScrollViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC:TeachersViewController = segue.destination as! TeachersViewController
-        nextVC.school = school!
-        nextVC.subject = subject!
+        
+        if let school = school {
+            nextVC.school = school
+        }
+        
+        if let subject = subject {
+            nextVC.subject = subject
+        }
     }
     
     @objc func goback(sender:UIButton) {

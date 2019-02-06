@@ -23,33 +23,35 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewDidLayoutSubviews() {
         makeScrollView()
         
         topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
-        topLabel.text = "\(school!) \(subject!)"
         topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
         topLabel.backgroundColor = MakeView.underButtonColor
         topLabel.textAlignment = .center
         self.view.addSubview(topLabel)
+        if let school = school,let subject = subject {
+            topLabel.text = "\(school) \(subject)"
+        }
         
         underLabel.frame = CGRect(x: 0, y: self.height-MakeView.underButtonHeight, width: self.width, height: MakeView.underButtonHeight)
         underLabel.backgroundColor = MakeView.underButtonColor
         self.view.addSubview(underLabel)
         
-        self.teachers = [String]()//空にしておかないと戻ってきたときに困る
-        let ref = Database.database().reference().child("/college/\(school!)/\(subject!)")
-        fetchArray(ref: ref){(response) in
-            self.teachers = response
-            self.makeButton()
+        self.teachers = [String]()//空にしておかないと更新したときに困る
+        
+        if let school = school,let subject = subject {
+            let ref = Database.database().reference().child("/college/\(school)/\(subject)")
+            fetchArray(ref: ref){(response) in
+                self.teachers = response
+                self.makeButton()
+            }
         }
     }
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func makeButton() {
         var i=0
         let count = self.teachers.count
@@ -63,6 +65,7 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
             button.backgroundColor = MakeView.buttonColor
             button.layer.masksToBounds = true
             button.layer.cornerRadius = MakeView.cornerRadius
+            button.tag = i
             self.scrollView.addSubview(button)
             i+=1
         }
@@ -98,10 +101,8 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func onClick(sender: UIButton) {
         MakeView.puyopuyo(sender:sender)
-        //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
-        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace-1
+        let numberOfButton = sender.tag
         teacher = teachers[numberOfButton]
-        
         performSegue(withIdentifier: "goComment", sender: nil)
     }
     
@@ -121,19 +122,27 @@ class TeachersViewController: UIViewController, UIScrollViewDelegate {
 
         if segue.identifier ==  "goComment"{
             let nextVC: CommentViewController = segue.destination as! CommentViewController
-            nextVC.school = school!
-            nextVC.subject = subject!
-            nextVC.teacher = teacher!
+            if let school = school {
+                nextVC.school = school
+            }
+            if let subject = subject {
+                nextVC.subject = subject
+            }
+            if let teacher = teacher {
+                nextVC.teacher = teacher
+            }
         }
         
         if segue.identifier == "goAdd"{
                 let nextVC: AddTeacherViewController = segue.destination as! AddTeacherViewController
-                nextVC.ref = Database.database().reference().child("college/\(school!)/\(subject!)")
-                nextVC.school = self.school!
-                nextVC.subject = self.subject!
             
+            if let school = school, let subject = subject {
+                nextVC.ref = Database.database().reference().child("college/\(school)/\(subject)")
+                nextVC.school = self.school
+                nextVC.subject = self.subject
+            }
         }
-        }
+    }
     @objc func goback(sender:UIButton) {
         MakeView.puyopuyo(sender:sender)
         self.dismiss(animated: false, completion: nil)

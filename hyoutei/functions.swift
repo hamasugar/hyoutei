@@ -68,8 +68,8 @@ func fetchArray(ref: DatabaseReference, completion: @escaping (_ response: Array
         
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             
-            if let value = snapshot.value as! NSDictionary?{
-                print ("yes")
+            if let value = snapshot.value as? NSDictionary {
+                print (value)
                 for (key,_) in value {
                     returnValue.append(key as! String)
                 }
@@ -77,8 +77,8 @@ func fetchArray(ref: DatabaseReference, completion: @escaping (_ response: Array
                 completion(returnValue)
             }
             else {
-                print ("no")
-                returnValue = ["エラーです"]
+                print (snapshot.value)
+                returnValue = [""]
                 completion(returnValue)
             }
             

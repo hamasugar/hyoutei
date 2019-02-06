@@ -20,16 +20,7 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
         makeScrollView()
-        
         topLabel.frame = CGRect(x: 0, y: 15, width: self.width, height: MakeView.buttonHeight)
         topLabel.text = text.schoolTopLabel.rawValue
         topLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
@@ -46,7 +37,12 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
         }
         requestReview()
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     func makeButton() {
         var i=0
         let count = self.schools.count
@@ -60,6 +56,7 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
             button.backgroundColor = MakeView.buttonColor
             button.layer.masksToBounds = true
             button.layer.cornerRadius = MakeView.cornerRadius
+            button.tag = i
             self.scrollView.addSubview(button)
             i+=1
         }
@@ -81,17 +78,17 @@ class SchoolViewController: UIViewController, UIScrollViewDelegate {
 
     @objc func onClick(sender: UIButton) {
         MakeView.puyopuyo(sender:sender)
-        //ボタンが押されたら押されたボタンの位置つまり高さによってどのボタンが押されたかを間接的に判定する
-        let numberOfButton = Int(sender.frame.minY)/MakeView.buttonSpace-1
+        let numberOfButton = sender.tag
         school = schools[numberOfButton]
         performSegue(withIdentifier: "goSubject", sender: nil)
     }
     
     
 
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC: SubjectViewController = segue.destination as! SubjectViewController
-
-        nextVC.school = school!
-        }
+            if let school = school {
+                nextVC.school = school
+            }
     }
+}
